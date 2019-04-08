@@ -1,5 +1,6 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +18,10 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnLogin;
+    private Button btnNC;
     private EditText edtLogin;
     private EditText edtSenha;
+    private static final int REDIRECT = 200;
 
 
     @Override
@@ -29,8 +32,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.btnLogar);
         edtLogin = (EditText) findViewById(R.id.edtLog);
         edtSenha = (EditText) findViewById(R.id.edtSen);
+        btnNC = (Button) findViewById(R.id.btnNovaConta);
 
         btnLogin.setOnClickListener(this);
+        btnNC.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +58,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
             });
+        }else if (view.getId() == R.id.btnNovaConta){
+            Intent intent = new Intent(LoginActivity.this, CadastrarUsuario.class);
+            startActivityForResult(intent, REDIRECT);
         }
     }
 }
