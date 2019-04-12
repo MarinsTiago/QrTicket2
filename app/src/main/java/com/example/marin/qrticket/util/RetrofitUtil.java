@@ -16,15 +16,17 @@ import retrofit2.http.Path;
 
 public interface RetrofitUtil {
 
-    @POST("")
+    @POST("usuarios")
     Call<Void> inserirUsuario(@Body Usuario usuario);
 
-    @GET("")
-    Call<Usuario> logar(@Path("login") String login, @Path("senha") String senha);
+    @POST("usuarios/login")
+    Call<Usuario> logar(@Body Usuario usuario);
 
 
-    public static final Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:8080/")
-            .addConverterFactory(GsonConverterFactory.create()).build();
+    public static final Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://192.168.137.1/testeAPI/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
 }
 

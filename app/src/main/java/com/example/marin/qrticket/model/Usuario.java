@@ -11,7 +11,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int perfil;
-    private int flagAprovado;
+    private int flagAtivo;
 
     public int getId() {
         return id;
@@ -53,11 +53,11 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public int getFlagAprovado() {
-        return flagAprovado;
+    public int getFlagAtivo() {
+        return flagAtivo;
     }
 
-    public void setFlagAprovado(int flagAprovado) {
-        this.flagAprovado = flagAprovado;
+    public void setFlagAtivo(int flagAtivo) {
+        this.flagAtivo = flagAtivo;
     }
 }

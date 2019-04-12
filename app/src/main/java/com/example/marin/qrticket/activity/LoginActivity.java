@@ -1,11 +1,13 @@
 package com.example.marin.qrticket.activity;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Usuario;
@@ -41,21 +43,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnLogar){
+
             String login = edtLogin.getText().toString();
             String senha = edtSenha.getText().toString();
 
+            Usuario u = new Usuario();
+            u.setLogin(login);
+            u.setSenha(senha);
+
             final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-            final Call<Usuario> call = retrofitUtil.logar(login, senha);
+            final Call<Usuario> call = retrofitUtil.logar(u);
 
             call.enqueue(new Callback<Usuario>() {
                 @Override
                 public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-
+                    if (response.isSuccessful()){
+                        Usuario ui = new Usuario();
+                        ui = response.body();
+                        Toast.makeText(getBaseContext(), ui.getNome(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Vitor baitola", Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<Usuario> call, Throwable t) {
-
+                        t.printStackTrace();
                 }
             });
         }else if (view.getId() == R.id.btnNovaConta){

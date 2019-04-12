@@ -32,6 +32,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
         nome = (EditText) findViewById(R.id.edtCadUsuarioNome);
         login = (EditText) findViewById(R.id.edtCadUsuarioLogin);
         senha = (EditText) findViewById(R.id.edtCadUsuarioSenha);
+        btnInserirUsuario = (Button) findViewById(R.id.btnInserirUsuario);
 
         btnInserirUsuario.setOnClickListener(this);
     }
@@ -43,7 +44,7 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
         u.setLogin(login.getText().toString());
         u.setSenha(senha.getText().toString());
         u.setPerfil(perfil);
-        u.setFlagAprovado(1);
+        u.setFlagAtivo(1);
 
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<Void> call = retrofitUtil.inserirUsuario(u);
@@ -51,13 +52,13 @@ public class CadastrarUsuario extends AppCompatActivity implements View.OnClickL
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()){
-                    
+                        Toast.makeText(getBaseContext(),"Usuario Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Erro 404", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
