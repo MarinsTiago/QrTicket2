@@ -18,7 +18,8 @@ public class Empresa {
     private String telefone;
     private String situacao;
     private String descricao;
-    private String flagAprovado;
+    private int flagAprovado;
+    private int flagAtivo;
 
     public int getId() {
         return id;
@@ -116,11 +117,19 @@ public class Empresa {
         this.descricao = descricao;
     }
 
-    public String getFlagAprovado() {
+    public int getFlagAprovado() {
         return flagAprovado;
     }
 
-    public void setFlagAprovado(String flagAprovado) {
+    public void setFlagAprovado(int flagAprovado) {
         this.flagAprovado = flagAprovado;
+    }
+
+    public int getFlagAtivo() {
+        return flagAtivo;
+    }
+
+    public void setFlagAtivo(int flagAtivo) {
+        this.flagAtivo = flagAtivo;
     }
 }

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marin.qrticket.activity.EditarUsuario"
+    tools:context="com.example.marin.qrticket.activity.editar.EditarUsuario"
     android:orientation="vertical"
     >
 
     <EditText
-        android:id="@+id/edtCadUsuarioNome"
+        android:id="@+id/edtAtUsuarioNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome..."
@@ -17,21 +17,21 @@
         />
 
     <EditText
-        android:id="@+id/edtCadUsuarioLogin"
+        android:id="@+id/edtAtUsuarioLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="login..."
         />
 
     <EditText
-        android:id="@+id/edtCadUsuarioSenha"
+        android:id="@+id/edtAtUsuarioSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="senha..."
         />
 
     <Button
-        android:id="@+id/btnInserirUsuario"
+        android:id="@+id/btnAtUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="cadastrar"

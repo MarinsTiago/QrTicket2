@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marin.qrticket.activity.cadastrar.CadastroEmpresa"
+    android:orientation="vertical"
+    >
+
+    <EditText
+        android:id="@+id/edtCadEmpresaNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o nome da empresa..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaFantasia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o nome fantasia da empresa..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaLogradouro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o logradouro..."
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o número da empresa..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaComplemento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o complemento do endereço..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaCep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o cep..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresabairro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o bairro..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o email..."
+
+    />
+
+    <EditText
+        android:id="@+id/edtCadEmpresaTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite o telefone..."
+
+    />
+<!--
+    <EditText
+        android:id="@+id/edtCadEmpresaSituacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="..."
+
+    />-->
+
+    <EditText
+        android:id="@+id/edtCadEmpresaDescricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite uma descrição..."
+
+    />
+
+    <Button
+        android:id="@+id/btnInserirEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cadastrar"
+    />
+
+
+
+</LinearLayout>

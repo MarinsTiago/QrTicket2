@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CadastrarUsuario" />
+        <activity android:name=".activity.cadastrar.CadastroUsuario" />
 
         <uses-library
             android:name="com.google.android.wearable"
@@ -37,7 +37,7 @@
             android:value="true" />
 
         <activity
-            android:name=".activity.EditarUsuario"
+            android:name=".activity.editar.EditarUsuario"
             android:label="@string/title_activity_editar_usuario">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.cadastrar.CadastroEmpresa"></activity>
     </application>
 
 </manifest>

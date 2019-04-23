@@ -1,4 +1,4 @@
-package com.example.marin.qrticket.activity;
+package com.example.marin.qrticket.activity.cadastrar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CadastrarUsuario extends AppCompatActivity implements View.OnClickListener {
+public class CadastroUsuario extends AppCompatActivity implements View.OnClickListener {
 
     private EditText nome;
     private EditText login;
