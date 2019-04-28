@@ -44,7 +44,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
         u.setLogin(login.getText().toString());
         u.setSenha(senha.getText().toString());
         u.setPerfil(perfil);
-        u.setFlagAtivo(1);
+        u.setFlagAtivo(DEFAULT_KEYS_DIALER);
 
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<Void> call = retrofitUtil.inserirUsuario(u);
