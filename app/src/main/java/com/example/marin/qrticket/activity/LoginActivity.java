@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
@@ -51,17 +50,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             u.setLogin(login);
             u.setSenha(senha);
 
+            //cria instancia da classe necessária para a comunicação android X webService
             final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+
+            //Pega as informações dos editTexts e manda pro web service fazer a consulta através da biblioteca retrofit
             final Call<Usuario> call = retrofitUtil.logar(u);
 
+            //coloca na 'fila' para executar o processo
             call.enqueue(new Callback<Usuario>() {
                 @Override
                 public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                    //response contem a resposta da execução do processo e o objeto tbm está contido nele, no seu body
                     if (response.isSuccessful()){
                         Usuario ui = new Usuario();
+
+                        //pegando o objeto que retorna  da consulta
                         ui = response.body();
-                        Toast.makeText(getBaseContext(), ui.getNome(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getBaseContext(), "Vitor baitola", Toast.LENGTH_LONG).show();
+
+                        //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
+                        //estamos(LoginActivity.class) e a segunda
+                        //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
+                        Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
+
+                        //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                        intent.putExtra("usuario", ui);
+
+                        //Abre a activity
+                        startActivityForResult(intent, REDIRECT);
                     }
                 }
 

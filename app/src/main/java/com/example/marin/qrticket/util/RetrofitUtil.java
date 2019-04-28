@@ -1,6 +1,5 @@
 package com.example.marin.qrticket.util;
 
-import com.example.marin.qrticket.model.Empresa;
 import com.example.marin.qrticket.model.Usuario;
 
 import retrofit2.Call;
@@ -38,23 +37,6 @@ public interface RetrofitUtil {
 
 
    // -------------------------------------------------------------------------------
-
-
-    //EMPRESA ----------------------------------------------------------------------
-
-    @POST("empresas")
-    Call<Void> inserirEmpresa(@Body Empresa empresa);
-
-    @PUT("empresas")
-    Call<Void> editarEmpresa(@Body Empresa empresa);
-
-    @GET("empresas/{id}")
-    Call<Empresa> pegarIdEmpresa(@Path("id") int id);
-
-    @DELETE("empresas/{id}")
-    Call<Void> deletarEmpresa(@Path("id") int id);
-
-    // ----------------------------------------------------------------------------
 
 
     public static final Retrofit retrofit = new Retrofit.Builder()

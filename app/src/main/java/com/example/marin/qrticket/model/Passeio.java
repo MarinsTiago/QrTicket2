@@ -9,7 +9,6 @@ public class Passeio {
     private String nome;
     private String descricao;
     private int capacidade;
-    private Empresa idEmpresa;
     private int dataDevolucao;
     private int flagAprovado;
 
@@ -43,14 +42,6 @@ public class Passeio {
 
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
-    }
-
-    public Empresa getIdEmpresa() {
-        return idEmpresa;
-    }
-
-    public void setIdEmpresa(Empresa idEmpresa) {
-        this.idEmpresa = idEmpresa;
     }
 
     public int getDataDevolucao() {

@@ -1,12 +1,15 @@
 package com.example.marin.qrticket.model;
 
 /**
- * Created by marin on 06/04/2019.
+ * Created by marin on 28/04/2019.
  */
 
 public class Empresa {
 
     private int id;
+    private int cnpj;
+    private String login;
+    private String senha;
     private String nome;
     private String fantasia;
     private String logradouro;
@@ -27,6 +30,30 @@ public class Empresa {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {

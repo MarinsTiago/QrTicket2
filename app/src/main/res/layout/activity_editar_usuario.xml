@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marin.qrticket.activity.editar.EditarUsuario"
     android:orientation="vertical"
-    >
+    android:padding="50dp"
+    tools:context="com.example.marin.qrticket.activity.editar.EditarUsuario">
 
     <EditText
         android:id="@+id/edtAtUsuarioNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome..."
+        android:layout_marginTop="50dp"
 
         />
 
@@ -21,20 +22,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="login..."
+        android:layout_marginTop="50dp"
         />
+
 
     <EditText
         android:id="@+id/edtAtUsuarioSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="senha..."
+        android:layout_marginTop="50dp"
         />
 
     <Button
         android:id="@+id/btnAtUsuario"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="cadastrar"
+        android:text="Atualizar informações"
+        android:layout_marginTop="50dp"
+
         />
 
 </LinearLayout>

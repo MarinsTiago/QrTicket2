@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
+import com.example.marin.qrticket.activity.LoginActivity;
+import com.example.marin.qrticket.activity.UsuarioActivity;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
@@ -23,6 +25,7 @@ public class EditarUsuario extends AppCompatActivity {
     private EditText edtAtSenha;
     private static final int perfil = 1;
     private static final int flag = 1;
+    private static final int REDIRECT = 200;
 
 
     @Override
@@ -34,8 +37,12 @@ public class EditarUsuario extends AppCompatActivity {
         edtAtlogin = (EditText) findViewById(R.id.edtAtUsuarioLogin);
         edtAtSenha = (EditText) findViewById(R.id.edtAtUsuarioSenha);
 
-        final Intent intent = getIntent();
-        final int id = (intent.getIntExtra("ID", 0));
+        /*final Intent intent = getIntent();
+        final int id = (intent.getIntExtra("ID", 0));*/
+
+        //Recebendo o objeto usuario que vem de outra activity e armazenando em um novo objeto usuario
+        Usuario u = (Usuario) getIntent().getSerializableExtra("usuario");
+        final int id = u.getId();
 
         final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<Usuario> call = retrofitUtil.pegarIdUsuario(id);
@@ -73,7 +80,13 @@ public class EditarUsuario extends AppCompatActivity {
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getBaseContext(), "Ok", Toast.LENGTH_SHORT).show();
+                        if(response.isSuccessful()){
+
+                            Toast.makeText(getBaseContext(), "Por favor, faça login novamente.", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(EditarUsuario.this, LoginActivity.class);
+                            //Abre a activity
+                            startActivityForResult(intent, REDIRECT);
+                        }
                     }
 
                     @Override

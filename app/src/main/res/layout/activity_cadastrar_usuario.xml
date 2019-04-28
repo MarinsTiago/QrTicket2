@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="50dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nome..."
+        android:layout_marginTop="50dp"
 
     />
     
@@ -20,21 +21,25 @@
         android:id="@+id/edtCadUsuarioLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:hint="login..."    
+        android:hint="login..."
+        android:layout_marginTop="50dp"
     />
     
     <EditText
         android:id="@+id/edtCadUsuarioSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:hint="senha..."    
+        android:hint="senha..."
+        android:layout_marginTop="50dp"
     />
 
     <Button
         android:id="@+id/btnInserirUsuario"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:text="cadastrar"
+        android:layout_marginTop="50dp"
     />
 
 </LinearLayout>

@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="50px"
     tools:context="com.example.marin.qrticket.activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/edtLog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtLog"
@@ -16,16 +28,16 @@
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/edtSen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <EditText
         android:id="@+id/edtSen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="148dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Senha"
@@ -33,7 +45,7 @@
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -46,7 +58,6 @@
         android:typeface="serif"
         app:layout_constraintBottom_toTopOf="@+id/btnNovaConta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtSen"
         tools:ignore="MissingConstraints" />
@@ -58,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="@string/criarConta"
         android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

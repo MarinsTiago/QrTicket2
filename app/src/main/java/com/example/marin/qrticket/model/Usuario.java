@@ -1,10 +1,12 @@
 package com.example.marin.qrticket.model;
 
+import java.io.Serializable;
+
 /**
  * Created by marin on 02/04/2019.
  */
 
-public class Usuario {
+public class Usuario implements Serializable{
 
     private int id;
     private String nome;

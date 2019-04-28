@@ -1,5 +1,6 @@
 package com.example.marin.qrticket.activity.cadastrar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
+import com.example.marin.qrticket.activity.LoginActivity;
+import com.example.marin.qrticket.activity.UsuarioActivity;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
@@ -22,6 +25,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
     private EditText senha;
     private static final int perfil = 1;
     private Button btnInserirUsuario;
+    private static final int REDIRECT = 200;
 
 
     @Override
@@ -50,9 +54,14 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
         final Call<Void> call = retrofitUtil.inserirUsuario(u);
         call.enqueue(new Callback<Void>() {
             @Override
+
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()){
-                        Toast.makeText(getBaseContext(),"Usuario Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+
+                    //Abre a activity
+                    startActivityForResult(intent, REDIRECT);
                 }
             }
 
