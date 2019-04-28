@@ -1,6 +1,9 @@
 package com.example.marin.qrticket.util;
 
+import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -38,7 +41,14 @@ public interface RetrofitUtil {
 
    // -------------------------------------------------------------------------------
 
+    //EVENTO-------------------------------------------------------------------------
 
+    @GET("eventos")
+    Call<List<Evento>> listarEventos();
+
+
+
+    //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://192.168.137.1/testeAPI/")
             .addConverterFactory(GsonConverterFactory.create())

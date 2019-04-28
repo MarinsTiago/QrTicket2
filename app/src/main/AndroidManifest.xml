@@ -36,7 +36,10 @@
             android:name=".activity.UsuarioActivity"
             android:label=""
             android:screenOrientation="portrait">
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity android:name=".EventoActivity" />
+        <activity android:name=".adapter.EventoAdapter"></activity>
     </application>
 
 </manifest>
