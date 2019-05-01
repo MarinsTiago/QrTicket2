@@ -1,8 +1,6 @@
 package com.example.marin.qrticket.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +21,15 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
     private final Context context;
     private final List<Evento> eventos;
 
-    public EventoAdapter(@NonNull Context context, @NonNull List<Evento> eventos) {
+    public EventoAdapter(Context context, List<Evento> eventos) {
         super(context, R.layout.adapter_evento, eventos);
         this.context = context;
         this.eventos = eventos;
     }
 
-    @NonNull
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = layoutInflater.inflate(R.layout.adapter_evento, parent, false);
@@ -46,11 +44,11 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
 
         nome.setText(eventos.get(position).getNome());
         desc.setText(eventos.get(position).getDescricao());
-        capacidade.setText(eventos.get(position).getCapacidade());
-        data.setText((CharSequence) eventos.get(position).getData());
-        horaInicio.setText((CharSequence) eventos.get(position).getHoraInicio());
-        horaFim.setText((CharSequence) eventos.get(position).getHoraFim());
-        dataDev.setText((CharSequence) eventos.get(position).getDataDevolução());
+        capacidade.setText(String.valueOf(eventos.get(position).getCapacidade()));
+        data.setText(String.valueOf(eventos.get(position).getData()));
+        horaInicio.setText(String.valueOf(eventos.get(position).getHoraInicio()));
+        horaFim.setText(String.valueOf(eventos.get(position).getHoraFim()));
+        dataDev.setText(String.valueOf(eventos.get(position).getDataDevolucao()));
 
         return rowView;
     }

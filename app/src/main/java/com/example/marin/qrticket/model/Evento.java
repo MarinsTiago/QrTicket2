@@ -1,14 +1,14 @@
 package com.example.marin.qrticket.model;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by marin on 28/04/2019.
  */
 
-public class Evento {
+public class Evento implements Serializable {
 
     private int id;
     private String nome;
@@ -16,9 +16,9 @@ public class Evento {
     private int capacidade;
     private Empresa empresa;
     private Date data;
-    private Timestamp horaInicio;
-    private Time horaFim;
-    private Date dataDevolução;
+    private TimeZone horaInicio;
+    private TimeZone horaFim;
+    private Date dataDevolucao;
     private int flagAtivo;
 
     public int getId() {
@@ -69,28 +69,28 @@ public class Evento {
         this.data = data;
     }
 
-    public Timestamp getHoraInicio() {
+    public TimeZone getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Timestamp horaInicio) {
+    public void setHoraInicio(TimeZone horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Time getHoraFim() {
+    public TimeZone getHoraFim() {
         return horaFim;
     }
 
-    public void setHoraFim(Time horaFim) {
+    public void setHoraFim(TimeZone horaFim) {
         this.horaFim = horaFim;
     }
 
-    public Date getDataDevolução() {
-        return dataDevolução;
+    public Date getDataDevolucao() {
+        return dataDevolucao;
     }
 
-    public void setDataDevolução(Date dataDevolução) {
-        this.dataDevolução = dataDevolução;
+    public void setDataDevolucao(Date dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
     }
 
     public int getFlagAtivo() {

@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.marin.qrticket.EventoActivity;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.editar.EditarUsuario;
 import com.example.marin.qrticket.model.Usuario;
@@ -102,8 +103,8 @@ public class UsuarioActivity extends AppCompatActivity
 
         //ver eventos
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-
+            Intent intent = new Intent(UsuarioActivity.this, EventoActivity.class);
+            startActivityForResult(intent, REDIRECT);
         }
         //carrinho de compras
         else if (id == R.id.nav_slideshow) {

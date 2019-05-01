@@ -1,11 +1,14 @@
 package com.example.marin.qrticket;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.marin.qrticket.activity.TesteActivity;
 import com.example.marin.qrticket.adapter.EventoAdapter;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.util.RetrofitUtil;
@@ -17,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EventoActivity extends AppCompatActivity {
-
+    private static final int REDIRECT = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,11 @@ public class EventoActivity extends AppCompatActivity {
                     listar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            //terminar a listagem de eventos
+                            Intent intent = new Intent(EventoActivity.this, TesteActivity.class);
+                            int e = listarEventos.get(i).getId();
+                            intent.putExtra("id", e);
+                            startActivityForResult(intent, REDIRECT);
+
                         }
                     });
                 }
@@ -48,7 +55,7 @@ public class EventoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Evento>> call, Throwable t) {
-
+                Toast.makeText(getBaseContext(), "Erro", Toast.LENGTH_SHORT).show();
             }
         });
     }
