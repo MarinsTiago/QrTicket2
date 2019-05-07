@@ -97,6 +97,14 @@ public class EditarUsuario extends AppCompatActivity {
             }
         });
 
+
+        Button btnCancel = (Button) findViewById(R.id.btnCancelar);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         /*Button btnDel = (Button) findViewById(btnDelUsuario);
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override

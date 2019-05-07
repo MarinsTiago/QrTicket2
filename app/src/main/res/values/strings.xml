@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">QrTicket</string>
-    <string name="logar">logar</string>
-    <string name="criarConta">cadastrar-se</string>
+    <string name="logar">Entrar</string>
+    <string name="criarConta">cadastre-se</string>
     <string name="title_activity_editar_usuario">EditarUsuario</string>
     <!--
     This string is used for square devices and overridden by hello_world in

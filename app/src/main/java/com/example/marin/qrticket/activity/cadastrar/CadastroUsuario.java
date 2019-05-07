@@ -25,6 +25,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
     private EditText senha;
     private static final int perfil = 1;
     private Button btnInserirUsuario;
+    private Button btnCancelar;
     private static final int REDIRECT = 200;
 
 
@@ -37,38 +38,46 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
         login = (EditText) findViewById(R.id.edtCadUsuarioLogin);
         senha = (EditText) findViewById(R.id.edtCadUsuarioSenha);
         btnInserirUsuario = (Button) findViewById(R.id.btnInserirUsuario);
+        btnCancelar = (Button) findViewById(R.id.btnCancelar);
 
         btnInserirUsuario.setOnClickListener(this);
+        btnCancelar.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        Usuario u = new Usuario();
-        u.setNome(nome.getText().toString());
-        u.setLogin(login.getText().toString());
-        u.setSenha(senha.getText().toString());
-        u.setPerfil(perfil);
-        u.setFlagAtivo(DEFAULT_KEYS_DIALER);
 
-        RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-        final Call<Void> call = retrofitUtil.inserirUsuario(u);
-        call.enqueue(new Callback<Void>() {
-            @Override
+        if(view.getId() ==  R.id.btnInserirUsuario){
+            Usuario u = new Usuario();
+            u.setNome(nome.getText().toString());
+            u.setLogin(login.getText().toString());
+            u.setSenha(senha.getText().toString());
+            u.setPerfil(perfil);
+            u.setFlagAtivo(DEFAULT_KEYS_DIALER);
 
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()){
+            RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+            final Call<Void> call = retrofitUtil.inserirUsuario(u);
+            call.enqueue(new Callback<Void>() {
+                @Override
 
-                    Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()){
 
-                    //Abre a activity
-                    startActivityForResult(intent, REDIRECT);
+                        Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+
+                        //Abre a activity
+                        startActivityForResult(intent, REDIRECT);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else if (view.getId() == R.id.btnCancelar){
+            Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+            startActivityForResult(intent, REDIRECT);
+        }
     }
 }

@@ -2,44 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="50dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marin.qrticket.activity.cadastrar.CadastroUsuario">
-    
+    tools:context="com.example.marin.qrticket.activity.cadastrar.CadastroUsuario"
+    android:background="@color/corBase"
+    android:padding="15dp"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/logo" />
+
     <EditText
         android:id="@+id/edtCadUsuarioNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome..."
         android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_edit_text"
+        android:backgroundTint="@color/corInputs"
+        android:hint="Nome..."
+        android:gravity="center"
+        />
 
-    />
-    
     <EditText
         android:id="@+id/edtCadUsuarioLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:hint="login..."
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-    />
-    
+        android:layout_weight="1"
+        android:background="@drawable/round_edit_text"
+        android:backgroundTint="@color/corInputs"
+        android:hint="login..."
+        android:gravity="center"
+        />
+
     <EditText
         android:id="@+id/edtCadUsuarioSenha"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:hint="senha..."
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-    />
+        android:layout_weight="1"
+        android:background="@drawable/round_edit_text"
+        android:backgroundTint="@color/corInputs"
+        android:hint="senha..."
+        android:gravity="center"
+        />
 
-    <Button
-        android:id="@+id/btnInserirUsuario"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-        android:text="cadastrar"
-        android:layout_marginTop="50dp"
-    />
+        android:layout_weight="20"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/cancel"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/cad"
+            android:background="@drawable/round_button"
+            android:layout_weight="1"
+            android:text="cancelar" />
+
+        <Button
+            android:id="@+id/btnInserirUsuario"
+            android:textColor="@color/cad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/botao"
+            android:background="@drawable/round_button"
+            android:layout_weight="1"
+            android:text="cadastrar" />
+
+    </LinearLayout>
 
 </LinearLayout>
