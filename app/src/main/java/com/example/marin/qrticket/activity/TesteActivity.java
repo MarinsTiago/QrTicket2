@@ -51,9 +51,9 @@ public class TesteActivity extends AppCompatActivity {
                     test2.setText(String.valueOf(evento.getCapacidade()));
                     test3.setText(evento.getDescricao());
                     test4.setText(String.valueOf(evento.getData()));
-                    test5.setText(String.valueOf(evento.getHoraInicio()));
-                    test6.setText(String.valueOf(evento.getHoraFim()));
-                    test7.setText(String.valueOf(evento.getDataDevolucao()));
+                    test5.setText(String.valueOf(evento.getHora_inicio()));
+                    test6.setText(String.valueOf(evento.getHora_fim()));
+                    test7.setText(String.valueOf(evento.getData_devolucao()));
 
                 }
             }

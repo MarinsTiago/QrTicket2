@@ -46,9 +46,9 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         desc.setText(eventos.get(position).getDescricao());
         capacidade.setText(String.valueOf(eventos.get(position).getCapacidade()));
         data.setText(String.valueOf(eventos.get(position).getData()));
-        horaInicio.setText(String.valueOf(eventos.get(position).getHoraInicio()));
-        horaFim.setText(String.valueOf(eventos.get(position).getHoraFim()));
-        dataDev.setText(String.valueOf(eventos.get(position).getDataDevolucao()));
+        horaInicio.setText(String.valueOf(eventos.get(position).getHora_inicio()));
+        horaFim.setText(String.valueOf(eventos.get(position).getHora_fim()));
+        dataDev.setText(String.valueOf(eventos.get(position).getData_devolucao()));
 
         return rowView;
     }

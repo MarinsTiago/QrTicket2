@@ -16,9 +16,9 @@ public class Evento implements Serializable {
     private int capacidade;
     private Empresa empresa;
     private Date data;
-    private TimeZone horaInicio;
-    private TimeZone horaFim;
-    private Date dataDevolucao;
+    private String hora_inicio;
+    private String hora_fim;
+    private Date data_devolucao;
     private int flagAtivo;
 
     public int getId() {
@@ -69,28 +69,28 @@ public class Evento implements Serializable {
         this.data = data;
     }
 
-    public TimeZone getHoraInicio() {
-        return horaInicio;
+    public String getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setHoraInicio(TimeZone horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 
-    public TimeZone getHoraFim() {
-        return horaFim;
+    public String getHora_fim() {
+        return hora_fim;
     }
 
-    public void setHoraFim(TimeZone horaFim) {
-        this.horaFim = horaFim;
+    public void setHora_fim(String hora_fim) {
+        this.hora_fim = hora_fim;
     }
 
-    public Date getDataDevolucao() {
-        return dataDevolucao;
+    public Date getData_devolucao() {
+        return data_devolucao;
     }
 
-    public void setDataDevolucao(Date dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setData_devolucao(Date data_devolucao) {
+        this.data_devolucao = data_devolucao;
     }
 
     public int getFlagAtivo() {
