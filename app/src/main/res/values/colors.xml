@@ -3,9 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="corBase">#ffa726</color>
+    <color name="corBase">#FFFFFF</color>
     <color name="corInputs">#f9d888</color>
-    <color name="corLetrasBotaoLogin">#000000</color>
+    <color name="corLetrasBotaoLogin">#FFFFFF</color>
     <color name="cad">#FFFFFF</color>
     <color name="botao">#ff6f00</color>
     <color name="cancel">#bdbdbd</color>

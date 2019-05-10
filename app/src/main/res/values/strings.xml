@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">QrTicket</string>
-    <string name="logar">Entrar</string>
+    <string name="logar">ENTRAR</string>
     <string name="criarConta">cadastre-se</string>
     <string name="title_activity_editar_usuario">EditarUsuario</string>
     <!--

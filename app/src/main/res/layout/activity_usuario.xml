@@ -22,7 +22,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_usuario"
         app:menu="@menu/activity_usuario_drawer"
-        android:background="@color/corInputs"
+        android:background="@color/corBase"
         />
 
 </android.support.v4.widget.DrawerLayout>
