@@ -2,6 +2,7 @@ package com.example.marin.qrticket.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +11,10 @@ import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,13 +52,35 @@ public class TesteActivity extends AppCompatActivity {
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 if (response.isSuccessful()){
                     Evento evento = response.body();
-                    test1.setText(evento.getNome());
-                    test2.setText(String.valueOf(evento.getCapacidade()));
-                    test3.setText(evento.getDescricao());
-                    test4.setText(String.valueOf(evento.getData()));
-                    test5.setText(String.valueOf(evento.getHora_inicio()));
-                    test6.setText(String.valueOf(evento.getHora_fim()));
-                    test7.setText(String.valueOf(evento.getData_devolucao()));
+                    test1.setText("Nome do Evento: " + evento.getNome() + "\n");
+                    test2.setText("Capacidade de público: " + String.valueOf(evento.getCapacidade()) + "\n");
+                    test3.setText("Descrição do Evento: " + evento.getDescricao() + "\n");
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+                    Date dataEntrada = evento.getData();
+
+                    try {
+                        dataEntrada = sdf.parse(String.valueOf(evento.getData()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada);
+                    test4.setText("Data de realização: " + String.valueOf(dataFormatada) + "\n");
+
+                    test5.setText("Horario de inicio do Evento:" + String.valueOf(evento.getHora_inicio()) + "\n");
+                    test6.setText("Horario de encerramento do Evento: " + String.valueOf(evento.getHora_fim()) + "\n");
+
+                    Date dataEntrada2 = evento.getData_devolucao();
+
+                    try {
+                        dataEntrada = sdf.parse(String.valueOf(evento.getData_devolucao()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String dataFormatada2 = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada2);
+                    test7.setText("Data limite para devolução: " + String.valueOf(dataFormatada2) + "\n");
+
 
                 }
             }

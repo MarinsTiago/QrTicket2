@@ -6,50 +6,66 @@
     android:layout_height="match_parent"
     tools:context="com.example.marin.qrticket.activity.TesteActivity"
     android:orientation="vertical"
+    android:background="@color/corBase"
+    android:padding="20dp"
     >
 
     <TextView
         android:id="@+id/teste1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
     <TextView
         android:id="@+id/teste7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Comprar"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:textColor="@color/corLetrasBotaoLogin"
+    />
 
 </LinearLayout>

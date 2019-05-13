@@ -1,8 +1,8 @@
 package com.example.marin.qrticket.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by marin on 28/04/2019.

@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Evento;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,8 +29,6 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         this.context = context;
         this.eventos = eventos;
     }
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -35,20 +36,26 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         View rowView = layoutInflater.inflate(R.layout.adapter_evento, parent, false);
 
         TextView nome = (TextView) rowView.findViewById(R.id.mostrarNomEvento);
-        TextView desc = (TextView) rowView.findViewById(R.id.mostrarDescEvento);
         TextView capacidade = (TextView) rowView.findViewById(R.id.mostrarCapacidadEvento);
         TextView data = (TextView) rowView.findViewById(R.id.mostrarDataEvento);
-        TextView horaInicio = (TextView) rowView.findViewById(R.id.mostrarHoraInicioEvento);
-        TextView horaFim = (TextView) rowView.findViewById(R.id.mostrarHoraFimEvento);
-        TextView dataDev = (TextView) rowView.findViewById(R.id.mostrarDataDevEvento);
 
-        nome.setText(eventos.get(position).getNome());
-        desc.setText(eventos.get(position).getDescricao());
-        capacidade.setText(String.valueOf(eventos.get(position).getCapacidade()));
-        data.setText(String.valueOf(eventos.get(position).getData()));
-        horaInicio.setText(String.valueOf(eventos.get(position).getHora_inicio()));
-        horaFim.setText(String.valueOf(eventos.get(position).getHora_fim()));
-        dataDev.setText(String.valueOf(eventos.get(position).getData_devolucao()));
+
+        nome.setText("Nome do Evento: " + eventos.get(position).getNome());
+
+        capacidade.setText("Capacidade: " + String.valueOf(eventos.get(position).getCapacidade()));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date dataEntrada = eventos.get(position).getData();
+
+        try {
+            dataEntrada = sdf.parse(String.valueOf(eventos.get(position).getData()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada);
+        data.setText("Data de realização: " + dataFormatada);
+
 
         return rowView;
     }

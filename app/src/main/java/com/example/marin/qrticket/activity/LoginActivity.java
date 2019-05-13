@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
@@ -18,7 +19,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button btnLogin;
+    private Button btnLogar;
     private Button btnNC;
     private EditText edtLogin;
     private EditText edtSenha;
@@ -30,12 +31,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin = (Button) findViewById(R.id.btnLogar);
+        btnLogar = (Button) findViewById(R.id.btnLogar);
         edtLogin = (EditText) findViewById(R.id.edtLog);
         edtSenha = (EditText) findViewById(R.id.edtSen);
         btnNC = (Button) findViewById(R.id.btnNovaConta);
 
-        btnLogin.setOnClickListener(this);
+        btnLogar.setOnClickListener(this);
         btnNC.setOnClickListener(this);
     }
 
@@ -62,21 +63,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                     //response contem a resposta da execução do processo e o objeto tbm está contido nele, no seu body
                     if (response.isSuccessful()){
+                        if (response.body().getLogin() != null){
                         Usuario ui = new Usuario();
 
                         //pegando o objeto que retorna  da consulta
                         ui = response.body();
+                        int x = ui.getPerfil();
 
-                        //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
-                        //estamos(LoginActivity.class) e a segunda
-                        //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
-                        Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
+                        //condicional para saber o tipo de usuario e redirecionar para a tela de cada usuario
+                        if (x == 1){
+                            //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
+                            //estamos(LoginActivity.class) e a segunda
+                            //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
+                            Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
 
-                        //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
-                        intent.putExtra("usuario", ui);
+                            //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                            intent.putExtra("usuario", ui);
 
-                        //Abre a activity
-                        startActivityForResult(intent, REDIRECT);
+                            //Abre a activity
+                            startActivityForResult(intent, REDIRECT);
+                        }else if (x == 2){
+                            Intent intent = new Intent(LoginActivity.this, QrCodeEmpresa.class);
+
+                            //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                            intent.putExtra("usuario", ui);
+
+                            //Abre a activity
+                            startActivityForResult(intent, REDIRECT);
+                            }else{
+                            Toast.makeText(getBaseContext(), "Usuario inválido", Toast.LENGTH_LONG).show();
+                            }
+                        }
                     }
                 }
 
@@ -87,6 +104,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             });
         }else if (view.getId() == R.id.btnNovaConta){
             Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
+            //teste para leitura do QrCode
+            //Intent intent = new Intent(LoginActivity.this, QrCodeEmpresa.class);
+
             startActivityForResult(intent, REDIRECT);
         }
     }
