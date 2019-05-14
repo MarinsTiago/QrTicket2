@@ -12,14 +12,14 @@ import com.example.marin.qrticket.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class QrCodeEmpresa extends AppCompatActivity {
+public class QrCodeActivity extends AppCompatActivity {
 
     private Button btnScan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr_code_empresa);
+        setContentView(R.layout.activity_qr_code);
         btnScan = (Button) findViewById(R.id.btnScan);
         final Activity activity = this;
         btnScan.setOnClickListener(new View.OnClickListener() {

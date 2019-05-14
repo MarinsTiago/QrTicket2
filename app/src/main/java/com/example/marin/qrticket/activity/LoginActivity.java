@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             //Abre a activity
                             startActivityForResult(intent, REDIRECT);
                         }else if (x == 2){
-                            Intent intent = new Intent(LoginActivity.this, QrCodeEmpresa.class);
+                            Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
 
                             //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
                             intent.putExtra("usuario", ui);
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else if (view.getId() == R.id.btnNovaConta){
             Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
             //teste para leitura do QrCode
-            //Intent intent = new Intent(LoginActivity.this, QrCodeEmpresa.class);
+            //Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
 
             startActivityForResult(intent, REDIRECT);
         }

@@ -1,7 +1,9 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TesteActivity extends AppCompatActivity {
+public class TesteActivity extends AppCompatActivity{
 
     private TextView test1;
     private TextView test2;
@@ -29,6 +31,7 @@ public class TesteActivity extends AppCompatActivity {
     private TextView test5;
     private TextView test6;
     private TextView test7;
+    private static final int REDIRECT = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,6 @@ public class TesteActivity extends AppCompatActivity {
         test6 = (TextView) findViewById(R.id.teste6);
         test7 = (TextView) findViewById(R.id.teste7);
 
-
         int id = (int) getIntent().getSerializableExtra("id");
         final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<Evento> call = retrofitUtil.pegarIdEvento(id);
@@ -51,7 +53,7 @@ public class TesteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 if (response.isSuccessful()){
-                    Evento evento = response.body();
+                    final Evento evento = response.body();
                     test1.setText("Nome do Evento: " + evento.getNome() + "\n");
                     test2.setText("Capacidade de público: " + String.valueOf(evento.getCapacidade()) + "\n");
                     test3.setText("Descrição do Evento: " + evento.getDescricao() + "\n");
@@ -81,6 +83,19 @@ public class TesteActivity extends AppCompatActivity {
                     String dataFormatada2 = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada2);
                     test7.setText("Data limite para devolução: " + String.valueOf(dataFormatada2) + "\n");
 
+                    Button btnCompra = (Button) findViewById(R.id.btnCompra);
+                    btnCompra.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(TesteActivity.this, VendaActivity.class);
+
+                            //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                            intent.putExtra("evento", evento);
+
+                            //Abre a activity
+                            startActivityForResult(intent, REDIRECT);
+                        }
+                    });
 
                 }
             }
@@ -90,7 +105,12 @@ public class TesteActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Erro ao atualizar", Toast.LENGTH_SHORT).show();
             }
         });
-
-
+        Button btnCancel = (Button) findViewById(R.id.btnCancelarCompraI);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

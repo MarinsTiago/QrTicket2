@@ -4,60 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marin.qrticket.activity.TesteActivity"
+    tools:context="com.example.marin.qrticket.activity.VendaActivity"
     android:orientation="vertical"
-    android:background="@color/corBase"
     android:padding="20dp"
-    >
+    android:background="@color/corBase">
 
     <TextView
-        android:id="@+id/teste1"
+        android:id="@+id/txtNomeCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste2"
+        android:id="@+id/txtCapacidadeCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste3"
+        android:id="@+id/txtDescricaoCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste4"
+        android:id="@+id/txtDataCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste5"
+        android:id="@+id/txtHInicioCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste6"
+        android:id="@+id/txtHFimCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
-        android:id="@+id/teste7"
+        android:id="@+id/txtDataDevCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Selecione a quantidade de ingressos"
+    />
+    <NumberPicker
+        android:id="@+id/npCompra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+    />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,7 +80,7 @@
         >
 
         <Button
-            android:id="@+id/btnCancelarCompraI"
+            android:id="@+id/btnCancelarCompra"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -78,7 +92,7 @@
             android:text="cancelar" />
 
         <Button
-            android:id="@+id/btnCompra"
+            android:id="@+id/btnFinalizarCompra"
             android:textColor="@color/cad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -87,7 +101,7 @@
             android:backgroundTint="@color/botao"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="@string/Comprar" />
+            android:text="Finalizar Compra" />
 
     </LinearLayout>
 

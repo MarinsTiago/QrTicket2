@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.marin.qrticket.EventoActivity;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.editar.EditarUsuario;
 import com.example.marin.qrticket.model.Usuario;

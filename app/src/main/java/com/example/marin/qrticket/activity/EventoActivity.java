@@ -1,4 +1,4 @@
-package com.example.marin.qrticket;
+package com.example.marin.qrticket.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.marin.qrticket.activity.TesteActivity;
+import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.adapter.EventoAdapter;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.util.RetrofitUtil;
