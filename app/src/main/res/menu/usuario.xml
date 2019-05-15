@@ -5,5 +5,17 @@
         android:id="@+id/edtInfoUsuario"
         android:orderInCategory="100"
         android:title="@string/attUser"
-        app:showAsAction="never" />
+        android:icon="@drawable/userwhite"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/editInfoUser"
+                android:title="Editar Informações"
+            />
+
+        </menu>
+
+    </item>
 </menu>

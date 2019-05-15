@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.adapter.EventoAdapter;
 import com.example.marin.qrticket.model.Evento;
+import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
 import java.util.List;
@@ -20,7 +21,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EventoActivity extends AppCompatActivity {
+
     private static final int REDIRECT = 200;
+    Usuario user = new Usuario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,8 @@ public class EventoActivity extends AppCompatActivity {
                             Intent intent = new Intent(EventoActivity.this, TesteActivity.class);
                             int e = listarEventos.get(i).getId();
                             intent.putExtra("id", e);
+                            user = (Usuario) getIntent().getSerializableExtra("usuario");
+                            intent.putExtra("usuario", user);
                             startActivityForResult(intent, REDIRECT);
 
                         }

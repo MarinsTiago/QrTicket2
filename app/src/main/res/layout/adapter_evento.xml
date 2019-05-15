@@ -13,13 +13,6 @@
 
         />
 
-   <!--<TextView
-        android:id="@+id/mostrarDescEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       android:layout_gravity="left"
-        />-->
-
     <TextView
         android:id="@+id/mostrarCapacidadEvento"
         android:layout_width="wrap_content"
@@ -33,26 +26,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         />
-
-    <!--<TextView
-        android:id="@+id/mostrarHoraInicioEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        />
-
-    <TextView
-        android:id="@+id/mostrarHoraFimEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        />
-
-    <TextView
-        android:id="@+id/mostrarDataDevEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        />
--->
 </LinearLayout>

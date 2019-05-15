@@ -30,6 +30,8 @@ public class UsuarioActivity extends AppCompatActivity
         setContentView(R.layout.activity_usuario);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        user = (Usuario) getIntent().getSerializableExtra("usuario");
+        getSupportActionBar().setTitle("Seja bem vindo "+ user.getNome() + "!");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +77,7 @@ public class UsuarioActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.edtInfoUsuario) {
+        if (id == R.id.editInfoUser) {
             //Pega o objeto usuario que foi mandado de outra tela e armazena o mesmo em um novo usuario
             user = (Usuario) getIntent().getSerializableExtra("usuario");
 
@@ -103,6 +105,8 @@ public class UsuarioActivity extends AppCompatActivity
         //ver eventos
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(UsuarioActivity.this, EventoActivity.class);
+            user = (Usuario) getIntent().getSerializableExtra("usuario");
+            intent.putExtra("usuario", user);
             startActivityForResult(intent, REDIRECT);
         }
         //carrinho de compras

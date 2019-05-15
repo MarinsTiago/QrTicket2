@@ -57,6 +57,7 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         data.setText("Data de realização: " + dataFormatada);
 
 
+
         return rowView;
     }
 }

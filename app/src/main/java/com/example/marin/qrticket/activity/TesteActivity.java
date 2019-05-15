@@ -32,6 +32,8 @@ public class TesteActivity extends AppCompatActivity{
     private TextView test6;
     private TextView test7;
     private static final int REDIRECT = 200;
+    Usuario user = new Usuario();
+    private TextView teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class TesteActivity extends AppCompatActivity{
         test5 = (TextView) findViewById(R.id.teste5);
         test6 = (TextView) findViewById(R.id.teste6);
         test7 = (TextView) findViewById(R.id.teste7);
+        teste = (TextView) findViewById(R.id.teste);
 
         int id = (int) getIntent().getSerializableExtra("id");
         final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
@@ -82,6 +85,9 @@ public class TesteActivity extends AppCompatActivity{
                     }
                     String dataFormatada2 = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada2);
                     test7.setText("Data limite para devolução: " + String.valueOf(dataFormatada2) + "\n");
+
+                    user = (Usuario) getIntent().getSerializableExtra("usuario");
+                    teste.setText(user.getNome());
 
                     Button btnCompra = (Button) findViewById(R.id.btnCompra);
                     btnCompra.setOnClickListener(new View.OnClickListener() {

@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         int x = ui.getPerfil();
 
                         //condicional para saber o tipo de usuario e redirecionar para a tela de cada usuario
-                        if (x == 1){
+                        if (x == 0){
                             //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
                             //estamos(LoginActivity.class) e a segunda
                             //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             //Abre a activity
                             startActivityForResult(intent, REDIRECT);
-                        }else if (x == 2){
+                        }else if (x == 1){
                             Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
 
                             //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
