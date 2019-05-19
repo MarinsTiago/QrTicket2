@@ -12,6 +12,8 @@ import com.example.marin.qrticket.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+//Classe para a Empresa, ao entrar com as infos na tela de login, a empresa é redirecionada para essa tela
+//que possui apenas um botão para abrir o scanner de QRCODE, o mesmo já está fazendo a leitura;
 public class QrCodeActivity extends AppCompatActivity {
 
     private Button btnScan;
@@ -28,7 +30,7 @@ public class QrCodeActivity extends AppCompatActivity {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
                 //setando o tipo de scaner, que no nosso caso é o de qrcode
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                //texto que aparece na tela de leitura
+                //texto que aparece na tela de leitura do QRCODE
                 integrator.setPrompt("Escaneando QrCode");
                 //0 para selecionar camera traseira
                 integrator.setCameraId(0);

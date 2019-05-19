@@ -18,6 +18,7 @@ import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.editar.EditarUsuario;
 import com.example.marin.qrticket.model.Usuario;
 
+//Tela que o usuario é redirecionado e ao qual possui algumas opções
 public class UsuarioActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

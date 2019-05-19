@@ -20,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//Tela que lista todos os eventos
 public class EventoActivity extends AppCompatActivity {
 
     private static final int REDIRECT = 200;
@@ -49,8 +50,11 @@ public class EventoActivity extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Intent intent = new Intent(EventoActivity.this, TesteActivity.class);
                             int e = listarEventos.get(i).getId();
+                            //Passando o id do evento escolhido para a tela "TesteActivity'
                             intent.putExtra("id", e);
+                            //pegando o objeto usuario que vem de outra activity
                             user = (Usuario) getIntent().getSerializableExtra("usuario");
+                            //enviando o objeto usuario para a activity 'TesteActivity'
                             intent.putExtra("usuario", user);
                             startActivityForResult(intent, REDIRECT);
 

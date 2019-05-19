@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Evento;
+import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
 import java.text.ParseException;
@@ -22,6 +23,8 @@ import retrofit2.Response;
 
 public class VendaActivity extends AppCompatActivity {
 
+    //Tela para montar a inserir a venda, falta pegar algumas informações necessárias
+
     private TextView txtNome;
     private TextView txtCapacidade;
     private TextView txtDescricao;
@@ -30,6 +33,8 @@ public class VendaActivity extends AppCompatActivity {
     private TextView txtDataDev;
     private TextView txtFim;
     Evento evento = new Evento();
+    Usuario user = new Usuario();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +86,19 @@ public class VendaActivity extends AppCompatActivity {
                 }
                 String dataFormatada2 = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada2);
                 txtDataDev.setText("Data limite para devolução: " + String.valueOf(dataFormatada2) + "\n");
+
+                //pegando usuario que vem de outra activity
+                user = (Usuario) getIntent().getSerializableExtra("usuario");
+
+
+                //Select para escolher a quantidade de ingressos
                 np.setMinValue(0);
                 np.setMaxValue(10);
                 np.setWrapSelectorWheel(true);
                 np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                        //Display the newly selected number from picker
-                        //Toast.makeText(getBaseContext(), newVal, Toast.LENGTH_LONG).show();
+                        //fazer algo com a quantidade escolhida
                     }
                 });
             }
@@ -98,6 +108,7 @@ public class VendaActivity extends AppCompatActivity {
 
             }
         });
+        //botão para cancelar e voltar para a tela anterior
         Button btnCancel = (Button) findViewById(R.id.btnCancelarCompra);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
