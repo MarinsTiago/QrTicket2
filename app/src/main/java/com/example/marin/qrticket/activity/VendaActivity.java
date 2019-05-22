@@ -1,6 +1,7 @@
 package com.example.marin.qrticket.activity;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
-import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.model.Venda;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,6 +39,7 @@ public class VendaActivity extends AppCompatActivity {
     Usuario user = new Usuario();
     int idIngresso;
     private static final int REDIRECT = 200;
+    Date d = new Date();
 
 
     @Override
@@ -106,26 +106,28 @@ public class VendaActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
-                                Venda venda = new Venda();
-                                venda.setId_usuario(user.getId());
-                                venda.setId_ingresso(idIngresso);
-                                venda.setQtd(newVal);
-                                //venda.setData(data);
+                                    Venda venda = new Venda();
+                                    venda.setId_usuario(user.getId());
+                                    venda.setId_ingresso(idIngresso);
+                                    venda.setQuantidade(newVal);
 
-                                RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-                                final Call<Void> call = retrofitUtil.inserirVenda(venda);
-                                call.enqueue(new Callback<Void>() {
-                                    @Override
-                                    public void onResponse(Call<Void> call, Response<Void> response) {
-                                        Intent intent = new Intent(VendaActivity.this, LoginActivity.class);
-                                        startActivityForResult(intent, REDIRECT);
-                                    }
+                                    RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+                                    final Call<Void> call = retrofitUtil.inserirVenda(venda);
+                                    call.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            if (response.isSuccessful()){
+                                                Intent intent = new Intent(VendaActivity.this, LoginActivity.class);
+                                                startActivityForResult(intent, REDIRECT);
+                                            }
+                                        }
 
-                                    @Override
-                                    public void onFailure(Call<Void> call, Throwable t) {
-
-                                    }
-                                });
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+                                                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                System.out.println(t.getMessage());
+                                        }
+                                    });
                             }
                         });
                     }

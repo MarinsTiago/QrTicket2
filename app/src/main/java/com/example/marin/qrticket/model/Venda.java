@@ -1,7 +1,7 @@
 package com.example.marin.qrticket.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by marin on 06/04/2019.
@@ -12,11 +12,7 @@ public class Venda implements Serializable{
     private int id;
     private int id_usuario;
     private int id_ingresso;
-    private int qtd;
-    private Date data;
-    private double total;
-    //private int flagAprovado;
-
+    private int quantidade;
 
     public int getId() {
         return id;
@@ -24,14 +20,6 @@ public class Venda implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public int getId_usuario() {
@@ -50,36 +38,12 @@ public class Venda implements Serializable{
         this.id_ingresso = id_ingresso;
     }
 
-    public int getQtd() {
-        return qtd;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-
-  /*  public int getFlagAprovado() {
-        return flagAprovado;
-    }
-
-    public void setFlagAprovado(int flagAprovado) {
-        this.flagAprovado = flagAprovado;
-    }
-
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }*/
+    
 }
