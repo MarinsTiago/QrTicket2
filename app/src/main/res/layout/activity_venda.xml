@@ -17,20 +17,6 @@
         />
 
     <TextView
-        android:id="@+id/txtCapacidadeCompra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
-
-    <TextView
-        android:id="@+id/txtDescricaoCompra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
-
-    <TextView
         android:id="@+id/txtDataCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

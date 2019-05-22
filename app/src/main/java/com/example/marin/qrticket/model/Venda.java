@@ -66,6 +66,7 @@ public class Venda implements Serializable{
         this.total = total;
     }
 
+
   /*  public int getFlagAprovado() {
         return flagAprovado;
     }

@@ -1,5 +1,6 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
+import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
+import com.example.marin.qrticket.model.Venda;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +38,8 @@ public class VendaActivity extends AppCompatActivity {
     private TextView txtFim;
     Evento evento = new Evento();
     Usuario user = new Usuario();
+    int idIngresso;
+    private static final int REDIRECT = 200;
 
 
     @Override
@@ -43,14 +49,13 @@ public class VendaActivity extends AppCompatActivity {
 
         final NumberPicker np = (NumberPicker) findViewById(R.id.npCompra);
         txtNome = (TextView) findViewById(R.id.txtNomeCompra);
-        txtCapacidade = (TextView) findViewById(R.id.txtCapacidadeCompra);
-        txtDescricao = (TextView) findViewById(R.id.txtDescricaoCompra);
         txtData = (TextView) findViewById(R.id.txtDataCompra);
         txtInicio = (TextView) findViewById(R.id.txtHInicioCompra);
         txtFim = (TextView) findViewById(R.id.txtHFimCompra);
         txtDataDev = (TextView) findViewById(R.id.txtDataDevCompra);
 
         evento = (Evento) getIntent().getSerializableExtra("evento");
+        idIngresso = (int) getIntent().getSerializableExtra("idIngresso");
         int id = evento.getId();
         final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<Evento> call = retrofitUtil.pegarIdEvento(id);
@@ -59,8 +64,6 @@ public class VendaActivity extends AppCompatActivity {
             public void onResponse(Call<Evento> call, Response<Evento> response) {
                 final Evento evento = response.body();
                 txtNome.setText("Nome do Evento: " + evento.getNome() + "\n");
-                txtCapacidade.setText("Capacidade de público: " + String.valueOf(evento.getCapacidade()) + "\n");
-                txtDescricao.setText("Descrição do Evento: " + evento.getDescricao() + "\n");
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -97,8 +100,34 @@ public class VendaActivity extends AppCompatActivity {
                 np.setWrapSelectorWheel(true);
                 np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
-                    public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                        //fazer algo com a quantidade escolhida
+                    public void onValueChange(NumberPicker picker, int oldVal, final int newVal){
+                        Button btnComprar = (Button) findViewById(R.id.btnFinalizarCompra);
+                        btnComprar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Venda venda = new Venda();
+                                venda.setId_usuario(user.getId());
+                                venda.setId_ingresso(idIngresso);
+                                venda.setQtd(newVal);
+                                //venda.setData(data);
+
+                                RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+                                final Call<Void> call = retrofitUtil.inserirVenda(venda);
+                                call.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        Intent intent = new Intent(VendaActivity.this, LoginActivity.class);
+                                        startActivityForResult(intent, REDIRECT);
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
             }

@@ -42,7 +42,8 @@
         <activity android:name=".activity.EventoActivity" />
         <activity android:name=".adapter.EventoAdapter" />
         <activity android:name=".activity.QrCodeActivity" />
-        <activity android:name=".activity.VendaActivity"></activity>
+        <activity android:name=".activity.VendaActivity" />
+        <activity android:name=".activity.IngressoActivity"></activity>
     </application>
 
 </manifest>

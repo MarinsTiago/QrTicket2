@@ -87,13 +87,7 @@
             android:backgroundTint="@color/botao"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="@string/Comprar" />
+            android:text="Ingressos" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/teste"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

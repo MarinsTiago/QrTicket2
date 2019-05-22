@@ -50,7 +50,7 @@ public class TesteActivity extends AppCompatActivity{
         test5 = (TextView) findViewById(R.id.teste5);
         test6 = (TextView) findViewById(R.id.teste6);
         test7 = (TextView) findViewById(R.id.teste7);
-        teste = (TextView) findViewById(R.id.teste);
+        //teste = (TextView) findViewById(R.id.teste);
 
         //pegando o id que vem do clique do evento escolhido e fazendo a busca
         int id = (int) getIntent().getSerializableExtra("id");
@@ -100,9 +100,9 @@ public class TesteActivity extends AppCompatActivity{
                     btnCompra.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(TesteActivity.this, VendaActivity.class);
+                            Intent intent = new Intent(TesteActivity.this, IngressoActivity.class);
 
-                            //intent.putExtra("evento", evento);
+                            intent.putExtra("evento", evento);
                             //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
                             intent.putExtra("usuario", user);
 

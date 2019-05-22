@@ -110,10 +110,6 @@ public class UsuarioActivity extends AppCompatActivity
             intent.putExtra("usuario", user);
             startActivityForResult(intent, REDIRECT);
         }
-        //carrinho de compras
-        else if (id == R.id.nav_slideshow) {
-
-        }
         //gerar ingressos
         else if (id == R.id.nav_manage) {
 

@@ -1,7 +1,9 @@
 package com.example.marin.qrticket.util;
 
 import com.example.marin.qrticket.model.Evento;
+import com.example.marin.qrticket.model.Ingresso;
 import com.example.marin.qrticket.model.Usuario;
+import com.example.marin.qrticket.model.Venda;
 
 import java.util.List;
 
@@ -47,9 +49,26 @@ public interface RetrofitUtil {
     Call<List<Evento>> listarEventos();
 
     @GET("eventos/{id}")
-    Call<Evento>pegarIdEvento(@Path("id") int id);
+    Call<Evento> pegarIdEvento(@Path("id") int id);
 
 
+    //-------------------------------------------------------------------------------
+
+    //INGRESSO-----------------------------------------------------------------------
+
+    @GET("ingressos")
+    Call<List<Ingresso>> listarIngressos();
+
+    @GET("ingressos/{id}")
+    Call<List<Ingresso>> pegarIdIngresso();
+
+    @GET("ingressos/eventos/{id}")
+    Call<List<Ingresso>> pegarIngressoEvento(@Path("id") int id);
+    //-------------------------------------------------------------------------------
+
+    //VENDA--------------------------------------------------------------------------
+    @POST("vendas")
+    Call<Void> inserirVenda(@Body Venda venda);
     //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://192.168.137.1/testeAPI/")
