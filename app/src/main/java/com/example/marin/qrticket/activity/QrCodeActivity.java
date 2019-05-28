@@ -45,8 +45,13 @@ public class QrCodeActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null){
             if (result.getContents() != null){
-                //mostra num toast o conteudo do qrCode
-                alert(result.getContents());
+                //validar o qrcode
+                if (result.getContents().equals("qrticket")){
+                        Toast.makeText(getApplicationContext(), "Ingresso válido", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Ingresso inválido", Toast.LENGTH_LONG).show();
+                }
             }else{
                 alert("Scan cancelado");
             }

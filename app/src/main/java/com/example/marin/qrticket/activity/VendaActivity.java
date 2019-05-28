@@ -39,8 +39,6 @@ public class VendaActivity extends AppCompatActivity {
     Usuario user = new Usuario();
     int idIngresso;
     private static final int REDIRECT = 200;
-    Date d = new Date();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

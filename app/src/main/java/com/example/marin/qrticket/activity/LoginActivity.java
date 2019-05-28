@@ -103,9 +103,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         }else if (view.getId() == R.id.btnNovaConta){
-            Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
+            //Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
             //teste para leitura do QrCode
-            //Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, QrCreator.class);
 
             startActivityForResult(intent, REDIRECT);
         }

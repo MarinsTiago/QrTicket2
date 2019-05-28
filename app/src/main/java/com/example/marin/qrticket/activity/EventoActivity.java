@@ -42,6 +42,7 @@ public class EventoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
                 final List<Evento> listarEventos = response.body();
+
                 if (listarEventos != null){
                     EventoAdapter adapter = new EventoAdapter(getBaseContext(), listarEventos);
                     listar.setAdapter(adapter);

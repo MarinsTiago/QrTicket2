@@ -1,17 +1,19 @@
 package com.example.marin.qrticket.model;
 
+import java.io.Serializable;
+
 /**
  * Created by marin on 06/04/2019.
  */
 
-public class IngressoUsuario {
+public class IngressoUsuario implements Serializable{
 
     private int id;
-    private String qrCode;
-    private int flagAtivo;
-    private int flagAprovado;
-    private Usuario idUsuario;
-    private Ingresso idIngresso;
+    private int id_usuario;
+    private int id_ingresso;
+    private int id_evento;
+    private String qrcode;
+
 
     public int getId() {
         return id;
@@ -21,43 +23,35 @@ public class IngressoUsuario {
         this.id = id;
     }
 
-    public String getQrCode() {
-        return qrCode;
+    public String getQrcode() {
+        return qrcode;
     }
 
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
     }
 
-    public int getFlagAtivo() {
-        return flagAtivo;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public void setFlagAtivo(int flagAtivo) {
-        this.flagAtivo = flagAtivo;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public int getFlagAprovado() {
-        return flagAprovado;
+    public int getId_ingresso() {
+        return id_ingresso;
     }
 
-    public void setFlagAprovado(int flagAprovado) {
-        this.flagAprovado = flagAprovado;
+    public void setId_ingresso(int id_ingresso) {
+        this.id_ingresso = id_ingresso;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public int getId_evento() {
+        return id_evento;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Ingresso getIdIngresso() {
-        return idIngresso;
-    }
-
-    public void setIdIngresso(Ingresso idIngresso) {
-        this.idIngresso = idIngresso;
+    public void setId_evento(int id_evento) {
+        this.id_evento = id_evento;
     }
 }

@@ -10,8 +10,8 @@
             android:title="Procurar Eventos" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/qrcode"
-            android:title="Gerar ingresso" />
+            android:icon="@drawable/ticket"
+            android:title="Meus Ingressos" />
     </group>
 
     <item android:title="Mais opções">

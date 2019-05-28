@@ -11,8 +11,15 @@ public class Ingresso implements Serializable{
     private int id;
     private String descricao;
     private double valor;
-    private int flagAprovado;
-    private Passeio idPasseio;
+    private Evento id_evento;
+
+    public Evento getId_evento() {
+        return id_evento;
+    }
+
+    public void setId_evento(Evento id_evento) {
+        this.id_evento = id_evento;
+    }
 
     public int getId() {
         return id;
@@ -38,19 +45,5 @@ public class Ingresso implements Serializable{
         this.valor = valor;
     }
 
-    public int getFlagAprovado() {
-        return flagAprovado;
-    }
 
-    public void setFlagAprovado(int flagAprovado) {
-        this.flagAprovado = flagAprovado;
-    }
-
-    public Passeio getIdPasseio() {
-        return idPasseio;
-    }
-
-    public void setIdPasseio(Passeio idPasseio) {
-        this.idPasseio = idPasseio;
-    }
 }

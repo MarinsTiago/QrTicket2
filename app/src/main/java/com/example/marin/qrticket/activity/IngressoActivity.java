@@ -43,6 +43,7 @@ public class IngressoActivity extends AppCompatActivity {
         final ListView listar = (ListView) findViewById(R.id.listaIngresso);
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<List<Ingresso>> call = retrofitUtil.pegarIngressoEvento(id);
+
         call.enqueue(new Callback<List<Ingresso>>() {
             @Override
             public void onResponse(Call<List<Ingresso>> call, Response<List<Ingresso>> response) {

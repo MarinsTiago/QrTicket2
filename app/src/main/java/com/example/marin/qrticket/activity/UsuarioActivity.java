@@ -13,10 +13,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.editar.EditarUsuario;
+import com.example.marin.qrticket.adapter.EventoAdapter;
+import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
+import com.example.marin.qrticket.util.RetrofitUtil;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 //Tela que o usuario é redirecionado e ao qual possui algumas opções
 public class UsuarioActivity extends AppCompatActivity
@@ -34,14 +46,14 @@ public class UsuarioActivity extends AppCompatActivity
         user = (Usuario) getIntent().getSerializableExtra("usuario");
         getSupportActionBar().setTitle("Seja bem vindo "+ user.getNome() + "!");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -97,6 +109,44 @@ public class UsuarioActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final ListView listar = (ListView) findViewById(R.id.listarPrincipais);
+        RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+        final Call<List<Evento>> call = retrofitUtil.listarEventos();
+        call.enqueue(new Callback<List<Evento>>() {
+            @Override
+            public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {
+                final List<Evento> listarEventos = response.body();
+                if (listarEventos != null){
+                    EventoAdapter adapter = new EventoAdapter(getBaseContext(), listarEventos);
+                    listar.setAdapter(adapter);
+                    listar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            Intent intent = new Intent(UsuarioActivity.this, TesteActivity.class);
+                            int e = listarEventos.get(i).getId();
+                            //Passando o id do evento escolhido para a tela "TesteActivity'
+                            intent.putExtra("id", e);
+                            //pegando o objeto usuario que vem de outra activity
+                            user = (Usuario) getIntent().getSerializableExtra("usuario");
+                            //enviando o objeto usuario para a activity 'TesteActivity'
+                            intent.putExtra("usuario", user);
+                            startActivityForResult(intent, REDIRECT);
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Evento>> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Erro", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -110,9 +160,12 @@ public class UsuarioActivity extends AppCompatActivity
             intent.putExtra("usuario", user);
             startActivityForResult(intent, REDIRECT);
         }
-        //gerar ingressos
+        //Visualizar ingressos
         else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(UsuarioActivity.this, IngressoUsuarioActivity.class);
+            user = (Usuario) getIntent().getSerializableExtra("usuario");
+            intent.putExtra("usuario", user);
+            startActivityForResult(intent, REDIRECT);
         }
         //compartilhar ingresso
         else if (id == R.id.nav_share) {
