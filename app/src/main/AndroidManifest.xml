@@ -45,7 +45,8 @@
         <activity android:name=".activity.VendaActivity" />
         <activity android:name=".activity.IngressoActivity" />
         <activity android:name=".activity.QrCreator" />
-        <activity android:name=".activity.IngressoUsuarioActivity"></activity>
+        <activity android:name=".activity.IngressoUsuarioActivity" />
+        <activity android:name=".activity.ActivityUsoIngresso"></activity>
     </application>
 
 </manifest>

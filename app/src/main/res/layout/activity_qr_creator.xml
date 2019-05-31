@@ -15,5 +15,37 @@
         android:layout_gravity="center"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btnCancelarIng"
+            android:text="Cancelar ingresso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/cad"
+            android:background="@drawable/round_button"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/cancel"
+            />
+
+        <Button
+            android:id="@+id/btnGerarQr"
+            android:text="Gerar QrCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/botao"
+            android:background="@drawable/round_button"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/cad"
+            />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

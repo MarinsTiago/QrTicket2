@@ -1,5 +1,6 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class IngressoUsuarioActivity extends AppCompatActivity {
 
     private static final int REDIRECT = 200;
     Usuario user = new Usuario();
+    String qrcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class IngressoUsuarioActivity extends AppCompatActivity {
 
         user = (Usuario) getIntent().getSerializableExtra("usuario");
         int id = user.getId();
+
         final ListView listar = (ListView) findViewById(R.id.listaIngressoUsuario);
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<List<IngressoUsuario>> call = retrofitUtil.pegarIngressoUsuario(id);
@@ -49,12 +52,17 @@ public class IngressoUsuarioActivity extends AppCompatActivity {
                 final List<IngressoUsuario> listarIngressos = response.body();
                 final IngressoUsuarioAdapter adapter = new IngressoUsuarioAdapter(getBaseContext(), listarIngressos);
                 listar.setAdapter(adapter);
+
                 listar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                            String qrcode = listarIngressos.get(i).getQrcode();
-                            //mandar infos para a proxima activity e continuar desenvolvendo;
+                        IngressoUsuario ig = new IngressoUsuario();
+                        ig = listarIngressos.get(i);
+                        Intent intent = new Intent(IngressoUsuarioActivity.this, QrCreator.class);
+                        intent.putExtra("ingresso", ig);
+                        startActivityForResult(intent, REDIRECT);
+
                     }
                 });
             }
