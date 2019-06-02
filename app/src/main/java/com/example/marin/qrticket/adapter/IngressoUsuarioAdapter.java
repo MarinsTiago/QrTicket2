@@ -41,8 +41,8 @@ public class IngressoUsuarioAdapter extends ArrayAdapter<IngressoUsuario> {
         TextView desc = (TextView) rowView.findViewById(R.id.descIngUser);
         TextView preco = (TextView) rowView.findViewById(R.id.precoIngUser);
 
-        desc.setText("Id Ingresso: " + String.valueOf(ingressos.get(position).getId_ingresso()));
-        preco.setText("Id Evento: " + String.valueOf(ingressos.get(position).getId_evento()));
+        desc.setText("Descrição: " + String.valueOf(ingressos.get(position).getDescricao()));
+        preco.setText("Valor: " + String.valueOf(ingressos.get(position).getValor()));
 
         return rowView;
 

@@ -26,6 +26,7 @@ public class EditarUsuario extends AppCompatActivity {
     private static final int perfil = 1;
     private static final int flag = 1;
     private static final int REDIRECT = 200;
+    private EditText edtAtEmail;
 
 
     @Override
@@ -36,9 +37,7 @@ public class EditarUsuario extends AppCompatActivity {
         edtAtNome = (EditText) findViewById(R.id.edtAtUsuarioNome);
         edtAtlogin = (EditText) findViewById(R.id.edtAtUsuarioLogin);
         edtAtSenha = (EditText) findViewById(R.id.edtAtUsuarioSenha);
-
-        /*final Intent intent = getIntent();
-        final int id = (intent.getIntExtra("ID", 0));*/
+        edtAtEmail = (EditText) findViewById(R.id.edtAtUsuarioEmail);
 
         //Recebendo o objeto usuario que vem de outra activity e armazenando em um novo objeto usuario
         Usuario u = (Usuario) getIntent().getSerializableExtra("usuario");
@@ -53,6 +52,7 @@ public class EditarUsuario extends AppCompatActivity {
                 if (response.isSuccessful()){
                     Usuario u = response.body();
                     edtAtNome.setText(u.getNome());
+                    edtAtEmail.setText(u.getEmail());
                     edtAtlogin.setText(u.getLogin());
                     edtAtSenha.setText(u.getSenha());
                 }
@@ -71,6 +71,7 @@ public class EditarUsuario extends AppCompatActivity {
                 Usuario usuario = new Usuario();
                 usuario.setId(id);
                 usuario.setNome(edtAtNome.getText().toString());
+                usuario.setEmail(edtAtEmail.getText().toString());
                 usuario.setLogin(edtAtlogin.getText().toString());
                 usuario.setSenha(edtAtSenha.getText().toString());
                 usuario.setPerfil(perfil);

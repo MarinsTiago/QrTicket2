@@ -11,10 +11,15 @@ import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.IngressoUsuario;
+import com.example.marin.qrticket.util.RetrofitUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QrCreator extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,9 +34,11 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
 
         Button btnQr = (Button) findViewById(R.id.btnGerarQr);
         Button btnCancelQr = (Button) findViewById(R.id.btnCancelarIng);
+        Button btnVoltar = (Button) findViewById(R.id.voltar);
 
         btnQr.setOnClickListener(this);
         btnCancelQr.setOnClickListener(this);
+        btnVoltar.setOnClickListener(this);
     }
 
 
@@ -59,7 +66,24 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
                 e.printStackTrace();
             }
         }else if(view.getId() == R.id.btnCancelarIng){
-            //terminar a função de cancelar ingresso
+            ig = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
+            int id = ig.getId();
+            RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+            final Call<Void> call = retrofitUtil.estornarIngresso(id);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
+                }
+            });
+        }else if (view.getId() == R.id.voltar){
             finish();
         }
     }

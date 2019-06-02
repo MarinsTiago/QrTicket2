@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,8 +34,6 @@ public class IngressoUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresso_usuario);
     }
-
-
 
     @Override
     protected void onStart() {
@@ -69,10 +68,9 @@ public class IngressoUsuarioActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<IngressoUsuario>> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "erro", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
 
         super.onStart();
     }

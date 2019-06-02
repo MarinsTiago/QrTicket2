@@ -27,6 +27,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
     private Button btnInserirUsuario;
     private Button btnCancelar;
     private static final int REDIRECT = 200;
+    private EditText email;
 
 
     @Override
@@ -35,6 +36,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_cadastrar_usuario);
 
         nome = (EditText) findViewById(R.id.edtCadUsuarioNome);
+        email = (EditText) findViewById(R.id.edtCadUsuarioEmail);
         login = (EditText) findViewById(R.id.edtCadUsuarioLogin);
         senha = (EditText) findViewById(R.id.edtCadUsuarioSenha);
         btnInserirUsuario = (Button) findViewById(R.id.btnInserirUsuario);
@@ -50,6 +52,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
         if(view.getId() ==  R.id.btnInserirUsuario){
             Usuario u = new Usuario();
             u.setNome(nome.getText().toString());
+            u.setEmail(email.getText().toString());
             u.setLogin(login.getText().toString());
             u.setSenha(senha.getText().toString());
             u.setPerfil(perfil);

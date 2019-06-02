@@ -13,7 +13,8 @@ public class IngressoUsuario implements Serializable{
     private int id_ingresso;
     private int id_evento;
     private String qrcode;
-
+    private String descricao;
+    private float valor;
 
     public int getId() {
         return id;
@@ -53,5 +54,21 @@ public class IngressoUsuario implements Serializable{
 
     public void setId_evento(int id_evento) {
         this.id_evento = id_evento;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 }

@@ -20,18 +20,25 @@
         android:id="@+id/edtCadUsuarioNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
         android:hint="Nome..."
         android:gravity="center"
+
+        />
+
+    <EditText
+        android:id="@+id/edtCadUsuarioEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email..."
+        android:gravity="center"
+        android:layout_marginTop="8dp"
         />
 
     <EditText
         android:id="@+id/edtCadUsuarioLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_weight="1"
+        android:layout_marginTop="8dp"
         android:hint="login..."
         android:gravity="center"
         />
@@ -40,8 +47,7 @@
         android:id="@+id/edtCadUsuarioSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_weight="1"
+        android:layout_marginTop="8dp"
         android:hint="senha..."
         android:gravity="center"
         />

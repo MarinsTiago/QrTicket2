@@ -66,6 +66,8 @@ public interface RetrofitUtil {
     @GET("ingressos/eventos/{id}")
     Call<List<Ingresso>> pegarIngressoEvento(@Path("id") int id);
 
+
+
     //-------------------------------------------------------------------------------
 
     //VENDA--------------------------------------------------------------------------
@@ -74,6 +76,10 @@ public interface RetrofitUtil {
 
     @GET("vendas/ingressos/{id}")
     Call<List<IngressoUsuario>> pegarIngressoUsuario(@Path("id") int id);
+
+    @DELETE("vendas/ingressos/{id}")
+    Call<Void> estornarIngresso(@Path("id") int id);
+
     //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://192.168.137.1/testeAPI/")
