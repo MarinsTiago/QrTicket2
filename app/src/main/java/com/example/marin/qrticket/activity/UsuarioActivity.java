@@ -2,8 +2,6 @@ package com.example.marin.qrticket.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +21,9 @@ import com.example.marin.qrticket.adapter.EventoAdapter;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.util.List;
 
@@ -63,6 +64,16 @@ public class UsuarioActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Configuração para exibir imagem da internet utilizando a biblioteca Image loader
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .threadPoolSize(3)
+                .diskCacheExtraOptions(480, 320, null)
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .build();
+
+        ImageLoader.getInstance().init(config);
     }
 
     @Override
@@ -169,7 +180,10 @@ public class UsuarioActivity extends AppCompatActivity
         }
         //compartilhar ingresso
         else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(UsuarioActivity.this, ActivityShareIngresso.class);
+            user = (Usuario) getIntent().getSerializableExtra("usuario");
+            intent.putExtra("usuario", user);
+            startActivityForResult(intent, REDIRECT);
         }
         //sair
         else if (id == R.id.nav_send) {

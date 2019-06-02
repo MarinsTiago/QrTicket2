@@ -5,14 +5,14 @@ import android.os.Bundle;
 
 import com.example.marin.qrticket.R;
 
-public class ActivityUsoIngresso extends AppCompatActivity {
-
-    private static final int REDIRECT = 200;
+public class SelecionarUsuarioShareActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_uso_ingresso);
+        setContentView(R.layout.activity_selecionar_usuario_share);
+
+
     }
 
 

@@ -80,6 +80,9 @@ public interface RetrofitUtil {
     @DELETE("vendas/ingressos/{id}")
     Call<Void> estornarIngresso(@Path("id") int id);
 
+    @PUT("vendas/ingressos/transferir")
+    Call<IngressoUsuario> trasnserir();
+
     //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://192.168.137.1/testeAPI/")

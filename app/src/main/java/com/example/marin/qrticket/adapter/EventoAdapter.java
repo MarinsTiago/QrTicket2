@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Evento;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,11 +26,17 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
 
     private final Context context;
     private final List<Evento> eventos;
+    private final DisplayImageOptions options;
 
     public EventoAdapter(Context context, List<Evento> eventos) {
         super(context, R.layout.adapter_evento, eventos);
         this.context = context;
         this.eventos = eventos;
+
+        options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -38,7 +47,12 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         TextView nome = (TextView) rowView.findViewById(R.id.mostrarNomEvento);
         TextView capacidade = (TextView) rowView.findViewById(R.id.mostrarCapacidadEvento);
         TextView data = (TextView) rowView.findViewById(R.id.mostrarDataEvento);
+        ImageView imgEvento = (ImageView) rowView.findViewById(R.id.imgEvento);
 
+        //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4SNCMSWQkGIoSwpeaU33gpLe-f1DMEMlp00vweeZy1uilyam3pQ
+        String uri = "https://queconceito.com.br/wp-content/uploads/evento.jpg";
+
+        ImageLoader.getInstance().displayImage(uri, imgEvento, options);
 
         nome.setText("Nome do Evento: " + eventos.get(position).getNome());
 
@@ -55,7 +69,6 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         }
         String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada);
         data.setText("Data de realização: " + dataFormatada);
-
 
 
         return rowView;
