@@ -4,6 +4,7 @@ import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Ingresso;
 import com.example.marin.qrticket.model.IngressoUsuario;
 import com.example.marin.qrticket.model.Usuario;
+import com.example.marin.qrticket.model.UsuarioShare;
 import com.example.marin.qrticket.model.Venda;
 
 import java.util.List;
@@ -81,7 +82,7 @@ public interface RetrofitUtil {
     Call<Void> estornarIngresso(@Path("id") int id);
 
     @PUT("vendas/ingressos/transferir")
-    Call<IngressoUsuario> trasnserir();
+    Call<Void> trasnserir(@Body UsuarioShare usuarioShare);
 
     //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()

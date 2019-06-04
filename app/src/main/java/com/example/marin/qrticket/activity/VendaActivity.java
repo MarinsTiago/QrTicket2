@@ -26,11 +26,8 @@ import retrofit2.Response;
 
 public class VendaActivity extends AppCompatActivity {
 
-    //Tela para montar a inserir a venda, falta pegar algumas informações necessárias
 
     private TextView txtNome;
-    private TextView txtCapacidade;
-    private TextView txtDescricao;
     private TextView txtInicio;
     private TextView txtData;
     private TextView txtDataDev;
