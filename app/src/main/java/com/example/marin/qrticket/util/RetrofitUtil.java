@@ -4,6 +4,7 @@ import com.example.marin.qrticket.model.Empresa;
 import com.example.marin.qrticket.model.Evento;
 import com.example.marin.qrticket.model.Ingresso;
 import com.example.marin.qrticket.model.IngressoUsuario;
+import com.example.marin.qrticket.model.Qrcode;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.model.UsuarioShare;
 import com.example.marin.qrticket.model.Venda;
@@ -80,6 +81,8 @@ public interface RetrofitUtil {
     Call<List<Ingresso>> pegarIngressoEvento(@Path("id") int id);
 
 
+    @PUT("vendas/ingressos")
+    Call<Qrcode> validarQr(@Body Qrcode qrcode);
 
     //-------------------------------------------------------------------------------
 
