@@ -73,14 +73,22 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
-                    finish();
+                    int req;
+                    req = response.code();
+                    if (req == 200){
+                        Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }else if(req == 500){
+                        Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Erro do sistema", Toast.LENGTH_LONG).show();
                 }
             });
         }else if (view.getId() == R.id.voltar){

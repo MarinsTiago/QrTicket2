@@ -10,14 +10,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:background="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/edtLog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/edtLog"
@@ -55,17 +55,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:text="@string/logar"
-        android:typeface="serif"
         android:textColor="@color/corLetrasBotaoLogin"
+        android:typeface="serif"
+        app:layout_constraintBottom_toTopOf="@+id/btnNovaConta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtSen"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnLoginEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btnNovaConta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSen"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogar"
+        android:background="@drawable/round_button"
+        android:text="Entrar Empresa"
+        android:backgroundTint="@color/cancel"
+        android:textColor="@color/cad"
+        android:typeface="serif"
+        android:layout_marginTop="20dp"
+        />
 
     <Button
         android:id="@+id/btnNovaConta"
@@ -74,12 +91,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:text="@string/criarConta"
-        android:typeface="serif"
         android:textColor="@color/botao"
         android:textStyle="bold"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogar"
+        />
 
 </android.support.constraint.ConstraintLayout>

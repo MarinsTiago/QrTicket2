@@ -11,15 +11,7 @@ public class Ingresso implements Serializable{
     private int id;
     private String descricao;
     private double valor;
-    private Evento id_evento;
-
-    public Evento getId_evento() {
-        return id_evento;
-    }
-
-    public void setId_evento(Evento id_evento) {
-        this.id_evento = id_evento;
-    }
+    private int id_evento;
 
     public int getId() {
         return id;
@@ -45,5 +37,11 @@ public class Ingresso implements Serializable{
         this.valor = valor;
     }
 
+    public int getId_evento() {
+        return id_evento;
+    }
 
+    public void setId_evento(int id_evento) {
+        this.id_evento = id_evento;
+    }
 }

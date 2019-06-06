@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
+import com.example.marin.qrticket.model.Empresa;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText edtLogin;
     private EditText edtSenha;
     private static final int REDIRECT = 200;
+    private Button btnEmpresa;
 
 
     @Override
@@ -35,9 +37,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtLogin = (EditText) findViewById(R.id.edtLog);
         edtSenha = (EditText) findViewById(R.id.edtSen);
         btnNC = (Button) findViewById(R.id.btnNovaConta);
+        btnEmpresa = (Button) findViewById(R.id.btnLoginEmpresa);
 
         btnLogar.setOnClickListener(this);
         btnNC.setOnClickListener(this);
+        btnEmpresa.setOnClickListener(this);
     }
 
     @Override
@@ -102,12 +106,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         t.printStackTrace();
                 }
             });
+        }else if(view.getId() == R.id.btnLoginEmpresa){
+            String login = edtLogin.getText().toString();
+            String senha = edtSenha.getText().toString();
+
+            Empresa e = new Empresa();
+            e.setLogin(login);
+            e.setSenha(senha);
+
+            final RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+
+            Call<Empresa> call = retrofitUtil.logarEmpresa(e);
+
+            call.enqueue(new Callback<Empresa>() {
+                @Override
+                public void onResponse(Call<Empresa> call, Response<Empresa> response) {
+                    if(response.isSuccessful()){
+                        Empresa empresa = new Empresa();
+                        empresa = response.body();
+
+                        Intent intent = new Intent(LoginActivity.this, EmpresaEventoActivity.class);
+
+
+                        intent.putExtra("empresa", empresa);
+
+                        startActivityForResult(intent, REDIRECT);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Empresa> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), "Erro no login", Toast.LENGTH_LONG).show();
+                }
+            });
         }else if (view.getId() == R.id.btnNovaConta){
             //Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
             //teste para leitura do QrCode
             Intent intent = new Intent(LoginActivity.this, QrCreator.class);
 
             startActivityForResult(intent, REDIRECT);
+
         }
     }
 }

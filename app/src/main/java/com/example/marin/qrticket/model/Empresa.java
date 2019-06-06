@@ -1,13 +1,15 @@
 package com.example.marin.qrticket.model;
 
+import java.io.Serializable;
+
 /**
  * Created by marin on 28/04/2019.
  */
 
-public class Empresa {
+public class Empresa implements Serializable{
 
     private int id;
-    private int cnpj;
+    private String cnpj;
     private String login;
     private String senha;
     private String nome;
@@ -32,11 +34,11 @@ public class Empresa {
         this.id = id;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

@@ -40,6 +40,7 @@ public class IngressoActivity extends AppCompatActivity {
         user = (Usuario) getIntent().getSerializableExtra("usuario");
         evento = (Evento) getIntent().getSerializableExtra("evento");
         int id = evento.getId();
+
         final ListView listar = (ListView) findViewById(R.id.listaIngresso);
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
         final Call<List<Ingresso>> call = retrofitUtil.pegarIngressoEvento(id);
@@ -70,7 +71,7 @@ public class IngressoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Ingresso>> call, Throwable t) {
-
+                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

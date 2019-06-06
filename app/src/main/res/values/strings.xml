@@ -15,4 +15,5 @@
 
     <string name="attUser">Editar informações</string>
     <string name="Comprar">comprar ingresso</string>
+    <string name="title_activity_empresa">EmpresaActivity</string>
 </resources>

@@ -47,7 +47,8 @@
         <activity android:name=".activity.QrCreator" />
         <activity android:name=".activity.IngressoUsuarioActivity" />
         <activity android:name=".activity.ActivityShareIngresso" />
-        <activity android:name=".activity.SelecionarUsuarioShareActivity"></activity>
+        <activity android:name=".activity.SelecionarUsuarioShareActivity" />
+        <activity android:name=".activity.EmpresaEventoActivity"></activity>
     </application>
 
 </manifest>
