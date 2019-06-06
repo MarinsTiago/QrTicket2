@@ -48,7 +48,11 @@
         <activity android:name=".activity.IngressoUsuarioActivity" />
         <activity android:name=".activity.ActivityShareIngresso" />
         <activity android:name=".activity.SelecionarUsuarioShareActivity" />
-        <activity android:name=".activity.EmpresaEventoActivity"></activity>
+        <activity android:name=".activity.EmpresaEventoActivity" />
+        <activity
+            android:name=".activity.excluir"
+            android:label="@string/title_activity_excluir"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

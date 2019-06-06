@@ -1,6 +1,9 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,18 +27,49 @@ public class EmpresaEventoActivity extends AppCompatActivity {
 
     private static final int REDIRECT = 200;
     Empresa empresa = new Empresa();
+    private FloatingActionButton btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresa_evento);
+
+        FloatingActionButton logout = (FloatingActionButton) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+
+                alert.setPositiveButton("Sair",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                Intent intent = new Intent(EmpresaEventoActivity.this, LoginActivity.class);
+                                startActivityForResult(intent, REDIRECT);
+
+                            }
+                        }
+                );
+
+                alert.setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                dialog.dismiss();
+                            }
+                        });
+                alert.show();
+            }
+        });
+
     }
+
 
     @Override
     protected void onStart() {
 
         empresa = (Empresa) getIntent().getSerializableExtra("empresa");
-        int id = empresa.getId();
+        final int id = empresa.getId();
 
         final ListView listar = (ListView) findViewById(R.id.listaEventoEmpresa);
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
@@ -51,6 +85,9 @@ public class EmpresaEventoActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Intent intent = new Intent(EmpresaEventoActivity.this, QrCodeActivity.class);
+                            int idEvento = listarEventos.get(i).getId();
+                            intent.putExtra("idEvento", idEvento);
+                            intent.putExtra("idEmpresa", id);
                             startActivityForResult(intent, REDIRECT);
                         }
                     });

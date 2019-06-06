@@ -99,6 +99,7 @@ public interface RetrofitUtil {
     //-------------------------------------------------------------------------------
     public static final Retrofit retrofit = new Retrofit.Builder()
             //http://192.168.137.1/testeAPI/
+            //https://qrticketapi.herokuapp.com/
             .baseUrl("http://192.168.137.1/testeAPI/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
