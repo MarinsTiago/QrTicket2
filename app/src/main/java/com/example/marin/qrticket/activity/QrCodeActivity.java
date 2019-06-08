@@ -52,16 +52,25 @@ public class QrCodeActivity extends AppCompatActivity {
                 int e;
                 e = (int) getIntent().getSerializableExtra("idEvento");
                 String qrcode = result.getContents();
-                qr.setId(e);
+                qr.setId_evento(e);
                 qr.setQrcode(qrcode);
+
+                Toast.makeText(getBaseContext(), String.valueOf(e) + qrcode, Toast.LENGTH_LONG).show();
 
                 RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
                 final Call<Qrcode> call = retrofitUtil.validarQr(qr);
                 call.enqueue(new Callback<Qrcode>() {
                     @Override
                     public void onResponse(Call<Qrcode> call, Response<Qrcode> response) {
-                        Toast.makeText(getBaseContext(), "Ingresso válido", Toast.LENGTH_LONG).show();
-                        finish();
+                       if (response.code() == 200){
+                           Toast.makeText(getBaseContext(), "Ingresso válido", Toast.LENGTH_LONG).show();
+                           finish();
+                       }else if(response.code() == 500){
+                           Toast.makeText(getBaseContext(), "QRCODE INVÁLIDO", Toast.LENGTH_LONG).show();
+                           finish();
+                       }
+
+
                     }
 
                     @Override
@@ -72,7 +81,7 @@ public class QrCodeActivity extends AppCompatActivity {
                 });
 
                 //validar o qrcode
-
+                finish();
                 super.onActivityResult(requestCode, resultCode, data);
             }
 

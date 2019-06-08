@@ -66,38 +66,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                     //response contem a resposta da execução do processo e o objeto tbm está contido nele, no seu body
-                    if (response.isSuccessful()){
-                        if (response.body().getLogin() != null){
-                        Usuario ui = new Usuario();
+                    if (response.code() == 200) {
 
-                        //pegando o objeto que retorna  da consulta
-                        ui = response.body();
-                        int x = ui.getPerfil();
+                        if (response.isSuccessful()){
 
-                        //condicional para saber o tipo de usuario e redirecionar para a tela de cada usuario
-                        if (x == 0){
-                            //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
-                            //estamos(LoginActivity.class) e a segunda
-                            //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
-                            Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
+                            if (response.body().getLogin() != null) {
 
-                            //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
-                            intent.putExtra("usuario", ui);
+                                Usuario ui;
+                                //pegando o objeto que retorna  da consulta
+                                ui = response.body();
+                                int x = ui.getPerfil();
 
-                            //Abre a activity
-                            startActivityForResult(intent, REDIRECT);
-                        }else if (x == 1){
-                            Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
+                                //condicional para saber o tipo de usuario e redirecionar para a tela de cada usuario
+                                if (x == 0) {
+                                    //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
+                                    //estamos(LoginActivity.class) e a segunda
+                                    //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
+                                    Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
 
-                            //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
-                            intent.putExtra("usuario", ui);
+                                    //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                                    intent.putExtra("usuario", ui);
 
-                            //Abre a activity
-                            startActivityForResult(intent, REDIRECT);
-                            }else{
-                            Toast.makeText(getBaseContext(), "Usuario inválido", Toast.LENGTH_LONG).show();
+                                    //Abre a activity
+                                    startActivityForResult(intent, REDIRECT);
+                                } else if (x == 1) {
+                                    Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
+
+                                    //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
+                                    intent.putExtra("usuario", ui);
+
+                                    //Abre a activity
+                                    startActivityForResult(intent, REDIRECT);
+                                } else {
+                                    Toast.makeText(getBaseContext(), "Erro de sistema", Toast.LENGTH_LONG).show();
+                                }
+
                             }
                         }
+                    }else if(response.code() == 500){
+                        Toast.makeText(getBaseContext(), "Login ou Senha inválidos, tente novamente", Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -121,18 +128,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             call.enqueue(new Callback<Empresa>() {
                 @Override
                 public void onResponse(Call<Empresa> call, Response<Empresa> response) {
-                    if(response.isSuccessful()){
-                        Empresa empresa = new Empresa();
-                        empresa = response.body();
 
-                        Intent intent = new Intent(LoginActivity.this, EmpresaEventoActivity.class);
+                        if (response.code() == 200){
+                            if(response.isSuccessful()){
+                                Empresa empresa = new Empresa();
+                                empresa = response.body();
+
+                                Intent intent = new Intent(LoginActivity.this, EmpresaEventoActivity.class);
 
 
-                        intent.putExtra("empresa", empresa);
+                                intent.putExtra("empresa", empresa);
 
-                        startActivityForResult(intent, REDIRECT);
+                                startActivityForResult(intent, REDIRECT);
+                            }
+                        }else if (response.code() == 500){
+                            Toast.makeText(getBaseContext(), "Login ou Senha inválidos, tente novamente", Toast.LENGTH_LONG).show();
+                        }
+
                     }
-                }
 
                 @Override
                 public void onFailure(Call<Empresa> call, Throwable t) {
@@ -142,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else if (view.getId() == R.id.btnNovaConta){
             //Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
             //teste para leitura do QrCode
-            Intent intent = new Intent(LoginActivity.this, QrCreator.class);
+            Intent intent = new Intent(LoginActivity.this, CadastroUsuario.class);
 
             startActivityForResult(intent, REDIRECT);
 

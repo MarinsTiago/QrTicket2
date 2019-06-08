@@ -8,15 +8,15 @@ import java.io.Serializable;
 
 public class Qrcode implements Serializable {
 
-    private int id;
+    private int id_evento;
     private String qrcode;
 
-    public int getId() {
-        return id;
+    public int getId_evento() {
+        return id_evento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_evento(int id_evento) {
+        this.id_evento = id_evento;
     }
 
     public String getQrcode() {

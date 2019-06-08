@@ -27,7 +27,6 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
     //conteudo do qrcode
     IngressoUsuario ig = new IngressoUsuario();
     private String content;
-    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
         Button btnQr = (Button) findViewById(R.id.btnGerarQr);
         Button btnCancelQr = (Button) findViewById(R.id.btnCancelarIng);
         Button btnVoltar = (Button) findViewById(R.id.voltar);
-        img = (ImageView) findViewById(R.id.qrGenerator);
 
         btnQr.setOnClickListener(this);
         btnCancelQr.setOnClickListener(this);
@@ -78,10 +76,6 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
                     finish();
                 }
             }.start();
-
-
-
-
         }else if(view.getId() == R.id.btnCancelarIng){
             ig = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
             int id = ig.getId();
@@ -101,11 +95,10 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
                     }
 
                 }
-
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getBaseContext(), "Erro do sistema", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Erro de sistema", Toast.LENGTH_LONG).show();
                 }
             });
         }else if (view.getId() == R.id.voltar){
