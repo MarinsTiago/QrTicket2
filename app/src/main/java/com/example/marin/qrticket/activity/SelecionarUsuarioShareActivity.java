@@ -22,6 +22,7 @@ public class SelecionarUsuarioShareActivity extends AppCompatActivity implements
 
     private EditText edtEmail;
     private Button btnShare;
+    private Button btnShareBack;
     IngressoUsuario i = new IngressoUsuario();
 
 
@@ -32,53 +33,93 @@ public class SelecionarUsuarioShareActivity extends AppCompatActivity implements
 
         edtEmail = (EditText) findViewById(R.id.edtEmailShare);
         btnShare = (Button) findViewById(R.id.btnShare);
+        btnShareBack = (Button) findViewById(R.id.btnShareBack);
 
         btnShare.setOnClickListener(this);
+        btnShareBack.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-        alert.setPositiveButton("Compartilhar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int whichButton) {
+        if (view.getId() == R.id.btnShare){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            final AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
 
-                        i = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
-                        int idEvento = i.getId();
-                        String email = edtEmail.getText().toString();
-                        UsuarioShare us = new UsuarioShare();
-                        us.setId(idEvento);
-                        us.setEmail(email);
-                        RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-                        final Call<Void> call = retrofitUtil.trasnserir(us);
-                        call.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                Toast.makeText(getBaseContext(), "Ingresso compartilhado", Toast.LENGTH_LONG).show();
-                                finish();
-                            }
+            alert.setMessage("Deseja realmente compartilhar este ingresso?");
+            alert.setPositiveButton("Compartilhar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int whichButton) {
 
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
-                                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
+                            i = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
+                            int idEvento = i.getId();
+                            String email = edtEmail.getText().toString();
+                            UsuarioShare us = new UsuarioShare();
+                            us.setId(idEvento);
+                            us.setEmail(email);
+                            RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+                            final Call<Void> call = retrofitUtil.trasnserir(us);
+                            call.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                   if (response.code() == 200){
+                                       alert2.setMessage("Ingresso Compartilhado com sucesso!");
+                                       alert2.setPositiveButton("Ok",
+                                               new DialogInterface.OnClickListener() {
+                                                   public void onClick(DialogInterface dialog,
+                                                                       int whichButton) {
+                                                       dialog.dismiss();
+                                                       finish();
+                                                   }
+                                               });
+                                       alert2.show();
 
+                                   }else if (response.code() == 500){
+                                       alert2.setMessage("Email inválido, tente novamente");
+                                       alert2.setPositiveButton("Ok",
+                                               new DialogInterface.OnClickListener() {
+                                                   public void onClick(DialogInterface dialog,
+                                                                       int whichButton) {
+                                                       dialog.dismiss();
+                                                   }
+                                               });
+                                       alert2.show();
+                                   }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    alert2.setMessage("Erro de sistema");
+                                    alert2.setPositiveButton("Ok",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,
+                                                                    int whichButton) {
+                                                    dialog.dismiss();
+                                                    finish();
+                                                }
+                                            });
+                                    alert2.show();
+                                }
+                            });
+
+                        }
                     }
-                }
-             );
+            );
 
-        alert.setNegativeButton("Cancelar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int whichButton) {
-                        dialog.dismiss();
-                    }
-                });
-        alert.show();
+            alert.setNegativeButton("Cancelar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int whichButton) {
+                            dialog.dismiss();
+                        }
+                    });
+            alert.show();
+        }else if (view.getId() == R.id.btnShareBack){
+            finish();
+        }
+
     }
 }

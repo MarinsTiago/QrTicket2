@@ -11,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Selecione o ingresso que você compartilhará"
-        android:textColor="@color/botao"
-        android:textSize="20dp"
+        android:textColor="@color/corBase"
+        android:textSize="30dp"
+        android:background="@color/botao"
         android:gravity="center"
         />
 
     <ListView
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="90dp"
         android:id="@+id/listaIngressoShare"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
