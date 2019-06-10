@@ -91,7 +91,7 @@ public class VendaActivity extends AppCompatActivity {
 
                 //Select para escolher a quantidade de ingressos
                 np.setMinValue(0);
-                np.setMaxValue(10);
+                np.setMaxValue(evento.getCapacidade());
                 np.setWrapSelectorWheel(true);
                 np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
@@ -112,7 +112,8 @@ public class VendaActivity extends AppCompatActivity {
                                         @Override
                                         public void onResponse(Call<Void> call, Response<Void> response) {
                                             if (response.isSuccessful()){
-                                                Intent intent = new Intent(VendaActivity.this, LoginActivity.class);
+                                                Intent intent = new Intent(VendaActivity.this, UsuarioActivity.class);
+                                                intent.putExtra("usuario", user);
                                                 startActivityForResult(intent, REDIRECT);
                                             }
                                         }

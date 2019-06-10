@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Evento;
@@ -27,7 +28,7 @@ public class QrCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code);
         final Activity activity = this;
-
+        final QrCodeActivity view = this;
 
        // btnLogout.setOnClickListener(this);
 
@@ -55,15 +56,13 @@ public class QrCodeActivity extends AppCompatActivity {
                 qr.setId_evento(e);
                 qr.setQrcode(qrcode);
 
-                Toast.makeText(getBaseContext(), String.valueOf(e) + qrcode, Toast.LENGTH_LONG).show();
-
                 RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
                 final Call<Qrcode> call = retrofitUtil.validarQr(qr);
                 call.enqueue(new Callback<Qrcode>() {
                     @Override
                     public void onResponse(Call<Qrcode> call, Response<Qrcode> response) {
                        if (response.code() == 200){
-                           Toast.makeText(getBaseContext(), "Ingresso válido", Toast.LENGTH_LONG).show();
+                           Toast.makeText(getBaseContext(), "QRCODE VÁLIDO, ingresso utilizado com sucesso!", Toast.LENGTH_LONG).show();
                            finish();
                        }else if(response.code() == 500){
                            Toast.makeText(getBaseContext(), "QRCODE INVÁLIDO", Toast.LENGTH_LONG).show();

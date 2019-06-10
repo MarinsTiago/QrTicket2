@@ -63,8 +63,6 @@ public class EmpresaEventoActivity extends AppCompatActivity {
         });
 
     }
-
-
     @Override
     protected void onStart() {
 

@@ -1,8 +1,10 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +46,7 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         if (view.getId() == R.id.btnGerarQr){
 
             ig = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
@@ -73,34 +75,69 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
                 }
 
                 public void onFinish() {
-                    finish();
-                }
-            }.start();
-        }else if(view.getId() == R.id.btnCancelarIng){
-            ig = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
-            int id = ig.getId();
-            RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-            final Call<Void> call = retrofitUtil.estornarIngresso(id);
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    int req;
-                    req = response.code();
-                    if (req == 200){
-                        Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
-                        finish();
-                    }else if(req == 500){
-                        Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
-                        finish();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                    alert.setMessage("Ingresso utilizado com sucesso");
+                    alert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    dialog.dismiss();
+
+                                }
+                            });
+                    alert.show();
+                    try {
+                        wait(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
 
                 }
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getBaseContext(), "Erro de sistema", Toast.LENGTH_LONG).show();
-                }
-            });
+
+            }.start();
+        }else if(view.getId() == R.id.btnCancelarIng){
+            AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+            alert.setMessage("Deseja realmente estornar o ingresso?");
+            alert.setPositiveButton("Estornar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int whichButton) {
+                            ig = (IngressoUsuario) getIntent().getSerializableExtra("ingresso");
+                            int id = ig.getId();
+                            RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+                            final Call<Void> call = retrofitUtil.estornarIngresso(id);
+                            call.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    int req;
+                                    req = response.code();
+                                    if (req == 200){
+                                        Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }else if(req == 500){
+                                        Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }
+
+                                }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getBaseContext(), "Erro de sistema", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
+            );
+
+            alert.setNegativeButton("Cancelar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int whichButton) {
+                            dialog.dismiss();
+                        }
+                    });
+            alert.show();
         }else if (view.getId() == R.id.voltar){
             finish();
         }

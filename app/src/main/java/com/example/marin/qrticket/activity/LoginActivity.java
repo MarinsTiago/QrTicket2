@@ -1,6 +1,8 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         if (view.getId() == R.id.btnLogar){
 
             String login = edtLogin.getText().toString();
@@ -104,13 +106,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                         }
                     }else if(response.code() == 500){
-                        Toast.makeText(getBaseContext(), "Login ou Senha inválidos, tente novamente", Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                        alert.setMessage("Login ou senha inválidos");
+                        alert.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alert.show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Usuario> call, Throwable t) {
-                        t.printStackTrace();
+                    Toast.makeText(getBaseContext(), "Erro de sistema", Toast.LENGTH_LONG).show();
                 }
             });
         }else if(view.getId() == R.id.btnLoginEmpresa){
@@ -142,14 +153,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 startActivityForResult(intent, REDIRECT);
                             }
                         }else if (response.code() == 500){
-                            Toast.makeText(getBaseContext(), "Login ou Senha inválidos, tente novamente", Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                            alert.setMessage("Login ou senha inválidos");
+                            alert.setPositiveButton("Ok",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int whichButton) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alert.show();
+
+
                         }
 
                     }
 
                 @Override
                 public void onFailure(Call<Empresa> call, Throwable t) {
-                    Toast.makeText(getBaseContext(), "Erro no login", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Erro no sistema", Toast.LENGTH_LONG).show();
                 }
             });
         }else if (view.getId() == R.id.btnNovaConta){

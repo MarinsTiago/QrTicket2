@@ -22,33 +22,46 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.cadastrar.CadastroUsuario" />
+        <activity android:name=".activity.cadastrar.CadastroUsuario"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.editar.EditarUsuario"
-            android:label="@string/title_activity_editar_usuario">
+            android:label="@string/title_activity_editar_usuario"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TesteActivity" />
+        <activity android:name=".activity.TesteActivity"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.UsuarioActivity"
             android:label=""
             android:screenOrientation="portrait">
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
-        <activity android:name=".activity.EventoActivity" />
-        <activity android:name=".adapter.EventoAdapter" />
-        <activity android:name=".activity.QrCodeActivity" />
-        <activity android:name=".activity.VendaActivity" />
-        <activity android:name=".activity.IngressoActivity" />
-        <activity android:name=".activity.QrCreator" />
-        <activity android:name=".activity.IngressoUsuarioActivity" />
-        <activity android:name=".activity.ActivityShareIngresso" />
-        <activity android:name=".activity.SelecionarUsuarioShareActivity" />
-        <activity android:name=".activity.EmpresaEventoActivity" />
+        <activity android:name=".activity.EventoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".adapter.EventoAdapter"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.QrCodeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.VendaActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.IngressoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.QrCreator"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.IngressoUsuarioActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ActivityShareIngresso"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SelecionarUsuarioShareActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.EmpresaEventoActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
