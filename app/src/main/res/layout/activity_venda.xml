@@ -10,38 +10,62 @@
     android:background="@color/corBase">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informações para compra"
+        android:background="@color/botao"
+        android:textColor="@color/corBase"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+
+
+        />
+
+    <TextView
         android:id="@+id/txtNomeCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/txtDataCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/txtHInicioCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/txtHFimCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/txtDataDevCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
@@ -49,6 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Selecione a quantidade de ingressos"
+        android:textStyle="bold"
+        android:textColor="@color/botao"
+        android:textSize="20dp"
     />
     <NumberPicker
         android:id="@+id/npCompra"
@@ -75,7 +102,8 @@
             android:textColor="@color/cad"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="cancelar" />
+            android:text="cancelar"
+            android:layout_gravity="center|bottom"/>
 
         <Button
             android:id="@+id/btnFinalizarCompra"
@@ -87,7 +115,9 @@
             android:backgroundTint="@color/botao"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="Finalizar Compra" />
+            android:text="Finalizar Compra"
+            android:layout_gravity="center|bottom"
+            />
 
     </LinearLayout>
 

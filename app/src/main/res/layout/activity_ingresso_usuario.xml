@@ -7,10 +7,24 @@
     tools:context="com.example.marin.qrticket.activity.IngressoUsuarioActivity"
     android:orientation="vertical"
     >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Meus Ingressos"
+        android:textColor="@color/corBase"
+        android:textSize="30dp"
+        android:background="@color/botao"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
     <ListView
         android:id="@+id/listaIngressoUsuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        >
     </ListView>
 
 </LinearLayout>

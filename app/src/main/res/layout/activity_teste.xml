@@ -11,52 +11,79 @@
     >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informações do Evento"
+        android:background="@color/botao"
+        android:textColor="@color/corBase"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
         android:id="@+id/teste1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/teste7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +102,9 @@
             android:textColor="@color/cad"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="cancelar" />
+            android:text="cancelar"
+            android:layout_gravity="center|bottom"
+            />
 
         <Button
             android:id="@+id/btnCompra"
@@ -87,7 +116,9 @@
             android:backgroundTint="@color/botao"
             android:background="@drawable/round_button"
             android:layout_weight="1"
-            android:text="Ingressos" />
+            android:text="Ingressos"
+            android:layout_gravity="center|bottom"
+            />
 
     </LinearLayout>
 </LinearLayout>

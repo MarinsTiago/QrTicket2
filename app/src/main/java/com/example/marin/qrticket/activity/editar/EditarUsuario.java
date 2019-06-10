@@ -87,7 +87,7 @@ public class EditarUsuario extends AppCompatActivity {
                         if(response.isSuccessful()){
                             if (response.code() == 201){
                                 AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-                                alert.setMessage("informações alteradas com sucesso. Por favor, faça login novamente");
+                                alert.setMessage("Informações alteradas com sucesso. Por favor, faça login novamente");
                                 alert.setPositiveButton("Ok",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog,
