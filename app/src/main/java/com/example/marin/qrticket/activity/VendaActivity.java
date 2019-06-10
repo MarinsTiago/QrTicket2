@@ -1,7 +1,9 @@
 package com.example.marin.qrticket.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -99,31 +101,82 @@ public class VendaActivity extends AppCompatActivity {
                         Button btnComprar = (Button) findViewById(R.id.btnFinalizarCompra);
                         btnComprar.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
+                            public void onClick(final View view) {
 
-                                    Venda venda = new Venda();
-                                    venda.setId_usuario(user.getId());
-                                    venda.setId_ingresso(idIngresso);
-                                    venda.setQuantidade(newVal);
+                                final AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                alert.setMessage("Deseja realmente finalizar a compra?");
+                                alert.setPositiveButton("Sim",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int whichButton) {
+                                                Venda venda = new Venda();
+                                                venda.setId_usuario(user.getId());
+                                                venda.setId_ingresso(idIngresso);
+                                                venda.setQuantidade(newVal);
 
-                                    RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-                                    final Call<Void> call = retrofitUtil.inserirVenda(venda);
-                                    call.enqueue(new Callback<Void>() {
-                                        @Override
-                                        public void onResponse(Call<Void> call, Response<Void> response) {
-                                            if (response.isSuccessful()){
-                                                Intent intent = new Intent(VendaActivity.this, UsuarioActivity.class);
-                                                intent.putExtra("usuario", user);
-                                                startActivityForResult(intent, REDIRECT);
+                                                RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
+                                                final Call<Void> call = retrofitUtil.inserirVenda(venda);
+                                                call.enqueue(new Callback<Void>() {
+                                                    @Override
+                                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                                        if (response.isSuccessful()){
+                                                            if (response.code() == 201){
+                                                                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                                                alert.setMessage("Compra realizada com sucesso!");
+                                                                alert.setPositiveButton("Ok",
+                                                                        new DialogInterface.OnClickListener() {
+                                                                            public void onClick(DialogInterface dialog,
+                                                                                                int whichButton) {
+                                                                                dialog.dismiss();
+                                                                                Intent intent = new Intent(VendaActivity.this, UsuarioActivity.class);
+                                                                                intent.putExtra("usuario", user);
+                                                                                startActivityForResult(intent, REDIRECT);
+                                                                            }
+                                                                        });
+                                                                alert.show();
+                                                            }else if (response.code() == 500){
+                                                                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                                                alert.setMessage("Erro ao finalizar compra, verifique as informações e tente novamente.");
+                                                                alert.setPositiveButton("Ok",
+                                                                        new DialogInterface.OnClickListener() {
+                                                                            public void onClick(DialogInterface dialog,
+                                                                                                int whichButton) {
+                                                                                dialog.dismiss();
+                                                                            }
+                                                                        });
+                                                                alert.show();
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<Void> call, Throwable t) {
+                                                        AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                                        alert.setMessage("Erro de sistema, verifique sua conexão e tente novamente.");
+                                                        alert.setPositiveButton("Ok",
+                                                                new DialogInterface.OnClickListener() {
+                                                                    public void onClick(DialogInterface dialog,
+                                                                                        int whichButton) {
+                                                                        dialog.dismiss();
+                                                                    }
+                                                                });
+                                                        alert.show();
+                                                    }
+                                                });
+
                                             }
                                         }
+                                );
 
-                                        @Override
-                                        public void onFailure(Call<Void> call, Throwable t) {
-                                                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                                System.out.println(t.getMessage());
-                                        }
-                                    });
+                                alert.setNegativeButton("Não",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int whichButton) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                alert.show();
                             }
                         });
                     }

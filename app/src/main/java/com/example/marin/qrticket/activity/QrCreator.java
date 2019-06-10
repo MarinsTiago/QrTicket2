@@ -76,22 +76,16 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
 
                 public void onFinish() {
                     AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-                    alert.setMessage("Ingresso utilizado com sucesso");
+                    alert.setMessage("Ingresso escaneado com sucesso");
                     alert.setPositiveButton("Ok",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
                                                     int whichButton) {
                                     dialog.dismiss();
-
+                                    finish();
                                 }
                             });
                     alert.show();
-                    try {
-                        wait(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
                 }
 
             }.start();
@@ -112,11 +106,28 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
                                     int req;
                                     req = response.code();
                                     if (req == 200){
-                                        Toast.makeText(getBaseContext(), "Ingresso estornado com sucesso!", Toast.LENGTH_LONG).show();
-                                        finish();
+                                        AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                        alert.setMessage("Data de estorno ultrapassada!");
+                                        alert.setPositiveButton("Ok",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog,
+                                                                        int whichButton) {
+                                                        dialog.dismiss();
+                                                        finish();
+                                                    }
+                                                });
+                                        alert.show();
                                     }else if(req == 500){
-                                        Toast.makeText(getBaseContext(), "Data de estorno ultrapassada!", Toast.LENGTH_LONG).show();
-                                        finish();
+                                        AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                        alert.setMessage("Data de estorno ultrapassada!");
+                                        alert.setPositiveButton("Ok",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog,
+                                                                        int whichButton) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                        alert.show();
                                     }
 
                                 }

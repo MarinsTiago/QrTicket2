@@ -1,6 +1,8 @@
 package com.example.marin.qrticket.activity.cadastrar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.LoginActivity;
 import com.example.marin.qrticket.activity.UsuarioActivity;
+import com.example.marin.qrticket.activity.editar.EditarUsuario;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
@@ -47,7 +50,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
 
         if(view.getId() ==  R.id.btnInserirUsuario){
             Usuario u = new Usuario();
@@ -65,17 +68,48 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
 
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()){
+                        if (response.code() == 200){
 
-                        Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
-
-                        //Abre a activity
-                        startActivityForResult(intent, REDIRECT);
+                            AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                            alert.setMessage("Por favor, faça login novamente");
+                            alert.setPositiveButton("Ok",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int whichButton) {
+                                            dialog.dismiss();
+                                            Intent intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+                                            //Abre a activity
+                                            startActivityForResult(intent, REDIRECT);
+                                        }
+                                    });
+                            alert.show();
+                        }else if (response.code() == 500){
+                            AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                            alert.setMessage("Não foi possível realizar o cadastro, confira suas informações e tente novamente");
+                            alert.setPositiveButton("Ok",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int whichButton) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alert.show();
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                    alert.setMessage("Erro de sistema, verifique sua conexão com a internet e tente novamente.");
+                    alert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alert.show();
                 }
             });
         }else if (view.getId() == R.id.btnCancelar){

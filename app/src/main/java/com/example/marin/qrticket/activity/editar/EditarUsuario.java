@@ -1,6 +1,8 @@
 package com.example.marin.qrticket.activity.editar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.activity.LoginActivity;
 import com.example.marin.qrticket.activity.UsuarioActivity;
+import com.example.marin.qrticket.activity.cadastrar.CadastroUsuario;
 import com.example.marin.qrticket.model.Usuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
@@ -67,7 +70,7 @@ public class EditarUsuario extends AppCompatActivity {
         Button btnAtUsuario = (Button) findViewById(R.id.btnAtUsuario);
         btnAtUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 Usuario usuario = new Usuario();
                 usuario.setId(id);
                 usuario.setNome(edtAtNome.getText().toString());
@@ -82,17 +85,47 @@ public class EditarUsuario extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.isSuccessful()){
-
-                            Toast.makeText(getBaseContext(), "Por favor, faça login novamente.", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(EditarUsuario.this, LoginActivity.class);
-                            //Abre a activity
-                            startActivityForResult(intent, REDIRECT);
+                            if (response.code() == 201){
+                                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                alert.setMessage("informações alteradas com sucesso. Por favor, faça login novamente");
+                                alert.setPositiveButton("Ok",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int whichButton) {
+                                                dialog.dismiss();
+                                                Intent intent = new Intent(EditarUsuario.this, LoginActivity.class);
+                                                //Abre a activity
+                                                startActivityForResult(intent, REDIRECT);
+                                            }
+                                        });
+                                alert.show();
+                            }else if (response.code() == 500){
+                                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                                alert.setMessage("Erro ao atualizar, verifique as informações dos campos e tente novamente");
+                                alert.setPositiveButton("Ok",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int whichButton) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                alert.show();
+                            }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getBaseContext(), "Erro", Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                        alert.setMessage("Erro de sistema, verifique a sua conexão e tente novamente.");
+                        alert.setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alert.show();
                     }
                 });
             }
@@ -106,27 +139,5 @@ public class EditarUsuario extends AppCompatActivity {
                 finish();
             }
         });
-        /*Button btnDel = (Button) findViewById(btnDelUsuario);
-        btnDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Call<Void> call = retrofitUtil.deletarUsuario(id);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getBaseContext(), "Deleteado", Toast.LENGTH_SHORT).show();
-                        //redirecionar
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getBaseContext(), "Erro", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-            }
-        });*/
-
-
     }
 }

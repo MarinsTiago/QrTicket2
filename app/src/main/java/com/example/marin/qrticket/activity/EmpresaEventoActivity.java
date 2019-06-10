@@ -39,7 +39,7 @@ public class EmpresaEventoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-
+                alert.setMessage("Deseja realmente sair?");
                 alert.setPositiveButton("Sair",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
