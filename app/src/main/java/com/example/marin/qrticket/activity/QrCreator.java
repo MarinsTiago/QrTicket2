@@ -54,7 +54,7 @@ public class QrCreator extends AppCompatActivity implements View.OnClickListener
 
             //Classe para criar o qr code
             final QRCodeWriter writer = new QRCodeWriter();
-            new CountDownTimer(10000, 1000) {
+            new CountDownTimer(5000, 1000) {
 
                 public void onTick(long millisUntilFinished) {
                     try {
