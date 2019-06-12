@@ -77,8 +77,6 @@ public class EditarUsuario extends AppCompatActivity {
                 usuario.setEmail(edtAtEmail.getText().toString());
                 usuario.setLogin(edtAtlogin.getText().toString());
                 usuario.setSenha(edtAtSenha.getText().toString());
-                usuario.setPerfil(perfil);
-                usuario.setFlagAtivo(flag);
 
                 Call<Void> call = retrofitUtil.editarUsuario(usuario);
                 call.enqueue(new Callback<Void>() {

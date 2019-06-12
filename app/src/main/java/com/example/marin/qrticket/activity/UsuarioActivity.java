@@ -116,7 +116,7 @@ public class UsuarioActivity extends AppCompatActivity
         super.onStart();
         final ListView listar = (ListView) findViewById(R.id.listarPrincipais);
         RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
-        final Call<List<Evento>> call = retrofitUtil.listarEventos();
+        final Call<List<Evento>> call = retrofitUtil.maisVendidos();
         call.enqueue(new Callback<List<Evento>>() {
             @Override
             public void onResponse(Call<List<Evento>> call, Response<List<Evento>> response) {

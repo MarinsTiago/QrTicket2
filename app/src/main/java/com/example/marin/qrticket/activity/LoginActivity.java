@@ -77,22 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Usuario ui;
                                 //pegando o objeto que retorna  da consulta
                                 ui = response.body();
-                                int x = ui.getPerfil();
-
-                                //condicional para saber o tipo de usuario e redirecionar para a tela de cada usuario
-                                if (x == 0) {
-                                    //Mostra o caminho que acontecerá o fluxo de informações, primeira tela é a que
-                                    //estamos(LoginActivity.class) e a segunda
-                                    //é onde será levada as informações (UsuarioActivity.class) e posteriormente renderizada a tela
                                     Intent intent = new Intent(LoginActivity.this, UsuarioActivity.class);
 
                                     //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
                                     intent.putExtra("usuario", ui);
-
-                                    //Abre a activity
-                                    startActivityForResult(intent, REDIRECT);
-                                } else if (x == 1) {
-                                    Intent intent = new Intent(LoginActivity.this, QrCodeActivity.class);
 
                                     //Passa o objeto usuario para outra activity(tela), como se fosse uma espécie de sessão
                                     intent.putExtra("usuario", ui);
@@ -104,8 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 }
 
                             }
-                        }
-                    }else if(response.code() == 500){
+                        } else if(response.code() == 500){
                         AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                         alert.setMessage("Login ou senha inválidos");
                         alert.setPositiveButton("Ok",
@@ -117,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 });
                         alert.show();
                     }
+
                 }
 
                 @Override

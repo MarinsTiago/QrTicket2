@@ -11,6 +11,7 @@
         android:layout_height="80dp"
         android:scaleType="fitXY"
         android:layout_margin="5dp"
+        android:background="@drawable/logo"
         />
 
     <LinearLayout

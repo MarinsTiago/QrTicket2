@@ -66,6 +66,8 @@ public interface RetrofitUtil {
     @GET("eventos/{id}")
     Call<Evento> pegarIdEvento(@Path("id") int id);
 
+    @GET("eventos/vendidos")
+    Call<List<Evento>> maisVendidos();
 
     //-------------------------------------------------------------------------------
 

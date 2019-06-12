@@ -58,8 +58,6 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
             u.setEmail(email.getText().toString());
             u.setLogin(login.getText().toString());
             u.setSenha(senha.getText().toString());
-            u.setPerfil(perfil);
-            u.setFlagAtivo(DEFAULT_KEYS_DIALER);
 
             RetrofitUtil retrofitUtil = RetrofitUtil.retrofit.create(RetrofitUtil.class);
             final Call<Void> call = retrofitUtil.inserirUsuario(u);
@@ -67,8 +65,8 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
                 @Override
 
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (response.isSuccessful()){
-                        if (response.code() == 200){
+                   if (response.isSuccessful()){
+                        if (response.code() == 201){
 
                             AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
                             alert.setMessage("Por favor, faça login novamente");
@@ -96,12 +94,13 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
                             alert.show();
                         }
                     }
+                    Toast.makeText(getBaseContext(), String.valueOf(response.message()), Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-                    alert.setMessage("Erro de sistema, verifique sua conexão com a internet e tente novamente.");
+                    alert.setMessage(String.valueOf(t.getMessage()));
                     alert.setPositiveButton("Ok",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,

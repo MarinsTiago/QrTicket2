@@ -13,8 +13,6 @@ public class Usuario implements Serializable{
     private String login;
     private String senha;
     private String email;
-    private int perfil;
-    private int flagAtivo;
 
     public int getId() {
         return id;
@@ -54,21 +52,5 @@ public class Usuario implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
-    }
-
-    public int getFlagAtivo() {
-        return flagAtivo;
-    }
-
-    public void setFlagAtivo(int flagAtivo) {
-        this.flagAtivo = flagAtivo;
     }
 }

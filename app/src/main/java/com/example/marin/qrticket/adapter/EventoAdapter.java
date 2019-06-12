@@ -50,9 +50,9 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         ImageView imgEvento = (ImageView) rowView.findViewById(R.id.imgEvento);
 
         //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4SNCMSWQkGIoSwpeaU33gpLe-f1DMEMlp00vweeZy1uilyam3pQ
-        String uri = "https://queconceito.com.br/wp-content/uploads/evento.jpg";
+        //String uri = "https://queconceito.com.br/wp-content/uploads/evento.jpg";
 
-//        ImageLoader.getInstance().displayImage(uri, imgEvento, options);
+        //ImageLoader.getInstance().displayImage(uri, imgEvento, options);
 
         nome.setText("Nome do Evento: " + eventos.get(position).getNome());
 
