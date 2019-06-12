@@ -1,6 +1,7 @@
 package com.example.marin.qrticket.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by marin on 06/04/2019.
@@ -15,6 +16,10 @@ public class IngressoUsuario implements Serializable{
     private String qrcode;
     private String descricao;
     private float valor;
+    private String nome;
+    private Date data;
+    private String hora_inicio;
+
 
     public int getId() {
         return id;
@@ -70,5 +75,28 @@ public class IngressoUsuario implements Serializable{
 
     public void setValor(float valor) {
         this.valor = valor;
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getHora_inicio() {
+        return hora_inicio;
+    }
+
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.Ingresso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -38,7 +39,10 @@ public class IngressoAdapter extends ArrayAdapter<Ingresso> {
         TextView preco = (TextView) rowView.findViewById(R.id.precoIng);
 
         desc.setText("Categoria: " + String.valueOf(ingressos.get(position).getDescricao()));
-        preco.setText("Valor: " + String.valueOf(ingressos.get(position).getValor()) + " R$");
+
+        DecimalFormat df =  new DecimalFormat("0.00");
+        float precoFinal = (float) ingressos.get(position).getValor();
+        preco.setText("Valor: R$ " + String.valueOf(df.format(precoFinal)));
 
         return rowView;
     }

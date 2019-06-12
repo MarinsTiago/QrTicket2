@@ -47,7 +47,7 @@ public class EventoAdapter extends ArrayAdapter<Evento> {
         TextView nome = (TextView) rowView.findViewById(R.id.mostrarNomEvento);
         TextView capacidade = (TextView) rowView.findViewById(R.id.mostrarCapacidadEvento);
         TextView data = (TextView) rowView.findViewById(R.id.mostrarDataEvento);
-        ImageView imgEvento = (ImageView) rowView.findViewById(R.id.imgEvento);
+        //ImageView imgEvento = (ImageView) rowView.findViewById(R.id.imgEvento);
 
         //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4SNCMSWQkGIoSwpeaU33gpLe-f1DMEMlp00vweeZy1uilyam3pQ
         //String uri = "https://queconceito.com.br/wp-content/uploads/evento.jpg";

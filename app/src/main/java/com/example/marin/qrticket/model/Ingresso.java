@@ -1,6 +1,7 @@
 package com.example.marin.qrticket.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by marin on 06/04/2019.

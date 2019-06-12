@@ -69,7 +69,7 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
                         if (response.code() == 201){
 
                             AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
-                            alert.setMessage("Por favor, faça login novamente");
+                            alert.setMessage("Usuario cadastrado com sucesso! Por favor, faça login novamente");
                             alert.setPositiveButton("Ok",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,
@@ -94,7 +94,6 @@ public class CadastroUsuario extends AppCompatActivity implements View.OnClickLi
                             alert.show();
                         }
                     }
-                    Toast.makeText(getBaseContext(), String.valueOf(response.message()), Toast.LENGTH_LONG).show();
                 }
 
                 @Override

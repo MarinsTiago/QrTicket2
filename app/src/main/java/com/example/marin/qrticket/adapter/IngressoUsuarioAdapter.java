@@ -13,6 +13,10 @@ import com.example.marin.qrticket.R;
 import com.example.marin.qrticket.model.IngressoUsuario;
 import com.example.marin.qrticket.util.RetrofitUtil;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,9 +44,30 @@ public class IngressoUsuarioAdapter extends ArrayAdapter<IngressoUsuario> {
         View rowView = inflater.inflate(R.layout.adapter_ingresso_usuario, parent, false);
         TextView desc = (TextView) rowView.findViewById(R.id.descIngUser);
         TextView preco = (TextView) rowView.findViewById(R.id.precoIngUser);
+        TextView evento = (TextView) rowView.findViewById(R.id.eventoIngUser);
+        TextView data = (TextView) rowView.findViewById(R.id.dataIngUser);
+        TextView hora = (TextView) rowView.findViewById(R.id.horaIngUser);
 
         desc.setText("Descrição: " + String.valueOf(ingressos.get(position).getDescricao()));
-        preco.setText("Valor: " + String.valueOf(ingressos.get(position).getValor()));
+
+        DecimalFormat df =  new DecimalFormat("0.00");
+        float precoFinal = ingressos.get(position).getValor();
+        preco.setText("Valor: R$ " + String.valueOf(df.format(precoFinal)));
+
+        evento.setText("Evento: "+String.valueOf(ingressos.get(position).getNome()));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataEntrada = ingressos.get(position).getData();
+
+        try {
+            dataEntrada = sdf.parse(String.valueOf(ingressos.get(position).getData()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(dataEntrada);
+        data.setText("Data de realização: " + dataFormatada);
+
+        hora.setText("Horario: " + String.valueOf(ingressos.get(position).getHora_inicio()));
 
         return rowView;
 
